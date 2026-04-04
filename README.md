@@ -99,6 +99,26 @@ Client Telegram untuk OpenCode CLI yang memungkinkan:
 - **Session management** - Kelola sesi coding dari hp
 - **Model switching** - Ganti model AI langsung dari Telegram
 
+### 🚀 Fitur Utama
+
+#### 1. 📝 Automasi Administrasi Sekolah
+- Membuat surat-menyurat otomatis (surat izin, undangan, laporan)
+- Generate dokumen Word/Excel via command
+- Input data Dapodik dari jarak jauh
+- Membuat laporan BOS/SPJ otomatis
+
+#### 2. 🌐 Web Automasi
+- Kontrol browser dari Telegram
+- Eksekusi script automasi web
+- Monitoring website sekolah
+- Scraping data dari website
+
+#### 3. 💻 Remote Coding
+- Kirim perintah coding dari HP
+- Edit file di laptop via Telegram
+- Akses terminal jarak jauh
+- Build dan deploy project
+
 ### Install
 
 ```bash
