@@ -1,0 +1,120 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mode": {
+    "primary": {
+      "prompt": "{file:./SYSTEM_PROMPT.md}"
+    }
+  },
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
+  "skills": {
+    "paths": ["C:/Users/USER/Documents/opencode-skills"]
+  },
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "C:/Users/USER/Documents"],
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest", "--headless"],
+      "enabled": true
+    },
+    "playwriter": {
+      "type": "local",
+      "command": ["npx", "playwriter-mcp"],
+      "enabled": false
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "everything": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-everything"],
+      "enabled": false
+    },
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
+      "enabled": true
+    },
+    "git": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-git"],
+      "enabled": true
+    },
+    "time": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-time"],
+      "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true
+    },
+    "excel-control": {
+      "type": "local",
+      "command": ["npx", "-y", "@negokaz/excel-mcp-server"],
+      "enabled": true
+    },
+    "excel-mcp": {
+      "type": "local",
+      "command": ["C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "-m", "excel_mcp", "stdio"],
+      "enabled": true
+    },
+    "google-sheets": {
+      "type": "local",
+      "command": ["npx", "-y", "google-spreadsheet-mcp"],
+      "environment": {
+        "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
+      },
+      "enabled": true
+    },
+    "google-drive": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-gdrive"],
+      "environment": {
+        "credentials": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
+      },
+      "enabled": true
+    },
+    "windows-mcp": {
+      "type": "local",
+      "command": ["C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "-m", "windows_mcp"],
+      "enabled": true
+    },
+    "windows-desktop-automation": {
+      "type": "local",
+      "command": ["node", "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"],
+      "enabled": true
+    },
+    "openclaw": {
+      "type": "local",
+      "command": ["npx", "-y", "openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
+      "enabled": true
+    },
+    "shell": {
+      "type": "local",
+      "command": ["npx", "-y", "super-shell-mcp"],
+      "enabled": true
+    },
+    "pdf": {
+      "type": "local",
+      "command": ["uvx", "mcp-pdf"],
+      "enabled": true
+    }
+  }
+}

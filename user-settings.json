@@ -1,0 +1,22 @@
+{
+  "contextPaths": [
+    "AGENTS.md",
+    "system-prompt-opencode.md"
+  ],
+  "agents": {
+    "coder": {
+      "model": "claude-4-sonnet",
+      "maxTokens": 50000,
+      "reasoningEffort": "medium"
+    },
+    "title": {
+      "model": "gpt-4o-mini",
+      "maxTokens": 80
+    }
+  },
+  "tui": {
+    "theme": "opencode"
+  },
+  "debug": false,
+  "autoCompact": true
+}
