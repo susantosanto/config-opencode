@@ -99,25 +99,31 @@ Client Telegram untuk OpenCode CLI yang memungkinkan:
 - **Session management** - Kelola sesi coding dari hp
 - **Model switching** - Ganti model AI langsung dari Telegram
 
-### 🚀 Fitur Utama
+### 🚀 Fitur Utama (All Remote via Telegram)
 
 #### 1. 📝 Automasi Administrasi Sekolah
-- Membuat surat-menyurat otomatis (surat izin, undangan, laporan)
-- Generate dokumen Word/Excel via command
-- Input data Dapodik dari jarak jauh
-- Membuat laporan BOS/SPJ otomatis
+| Fitur | Deskripsi Remote |
+|-------|------------------|
+| 📨 **Surat Otomatis** | Buat surat izin, undangan, laporan - semua dari HP |
+| 📄 **Dokumen Dynamic** | Generate Word/Excel via command Telegram |
+| 🏫 **Dapodik Input** | Input data siswa/guru dari mana saja |
+| 📊 **Laporan BOS/SPJ** | Buat laporan keuangan otomatis - cukup kirim perintah |
 
 #### 2. 🌐 Web Automasi
-- Kontrol browser dari Telegram
-- Eksekusi script automasi web
-- Monitoring website sekolah
-- Scraping data dari website
+| Fitur | Deskripsi Remote |
+|-------|------------------|
+| 🌍 **Browser Control** | Kontrol browser dari Telegram - tanpa PC |
+| ⚙️ **Script Execution** | Jalankan script automasi web jarak jauh |
+| 👁️ **Website Monitor** | Monitoring website sekolah realtime |
+| 🕸️ **Data Scraping** | Ambil data dari website via chat |
 
 #### 3. 💻 Remote Coding
-- Kirim perintah coding dari HP
-- Edit file di laptop via Telegram
-- Akses terminal jarak jauh
-- Build dan deploy project
+| Fitur | Deskripsi Remote |
+|-------|------------------|
+| ⌨️ **Code from Anywhere** | Kirim code dari HP - laptop eksekusi |
+| 📁 **File Management** | Edit/baca/write file via chat |
+| 🖥️ **Terminal Access** | Akses terminal tanpa perlu di depan PC |
+| 🚀 **Build & Deploy** | Build & deploy project dari sofa |
 
 ### Install
 
