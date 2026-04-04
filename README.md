@@ -10,6 +10,7 @@ Konfigurasi personal untuk OpenCode AI - dikustomasi untuk Operator Sekolah & We
 - [Struktur Folder](#-struktur-folder)
 - [Fitur & MCP](#-fitur--mcp)
 - [Custom Skills](#-custom-skills)
+- [Telegram Bot](#-telegram-bot)
 - [Installation](#-installation)
 - [Cara Penggunaan](#-cara-penggunaan)
 
@@ -35,6 +36,7 @@ opencode-config/
 ├── skills/
 │   └── skill-list-install/
 │       └── SKILL.md       # Menu installer skills
+├── TELEGRAM.md            # Dokumentasi Telegram Bot
 ├── package.json
 └── bun.lock
 ```
@@ -84,6 +86,53 @@ opencode-config/
 - `skill-list-install` - Menu installer dari skills.sh
 - `ai-engineer-path` - AI learning path
 - `excel-live-editing` - Live Excel editing
+
+---
+
+## 🤖 Telegram Bot
+
+### Apa itu OpenCode Telegram Bot?
+
+Client Telegram untuk OpenCode CLI yang memungkinkan:
+- **Remote coding** - Kirim perintah coding dari mana saja via Telegram
+- **Monitoring** - Lihat progress task secara real-time
+- **Session management** - Kelola sesi coding dari hp
+- **Model switching** - Ganti model AI langsung dari Telegram
+
+### Install
+
+```bash
+# Install via npm
+npm install -g @grinev/opencode-telegram-bot
+
+# Atau gunakan npx
+npx @grinev/opencode-telegram-bot
+```
+
+### Cara Penggunaan
+
+```bash
+# Start bot
+opencode-telegram
+
+# Atau dengan pairing code
+npx @grinev/opencode-telegram-bot pair
+```
+
+### Commands
+
+| Command | Deskripsi |
+|---------|-----------|
+| `/start` | Mulai sesi |
+| `/status` | Lihat status server |
+| `/projects` | List semua project |
+| `/new` | Buat sesi baru |
+| `/sessions` | List dan switch sesi |
+| `/abort` | Batalkan task |
+
+### Dokumentasi Lengkap
+
+Lihat [`TELEGRAM.md`](TELEGRAM.md) untuk panduan lengkap.
 
 ---
 
