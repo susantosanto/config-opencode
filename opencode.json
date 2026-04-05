@@ -20,9 +20,97 @@
       "command": ["npx", "@playwright/mcp@latest", "--config", "C:\\Users\\USER\\.config\\opencode\\playwright-config.json"],
       "enabled": true
     },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp", "--headless"],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-fetch-server"],
+      "enabled": true
+    },
+    "git": {
+      "type": "local",
+      "command": ["git-mcp-server"],
+      "enabled": true
+    },
+    "time": {
+      "type": "local",
+      "command": ["npx", "-y", "@mcpcentral/mcp-time"],
+      "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "excel-control": {
+      "type": "local",
+      "command": ["npx", "-y", "@negokaz/excel-mcp-server"],
+      "enabled": true
+    },
+    "excel-mcp": {
+      "type": "local",
+      "command": ["C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "-m", "excel_mcp", "stdio"],
+      "enabled": true
+    },
+    "word": {
+      "type": "local",
+      "command": ["npx", "-y", "@puchunjie/doc-tools-mcp"],
+      "enabled": true
+    },
+    "google-sheets": {
+      "type": "local",
+      "command": ["npx", "-y", "google-spreadsheet-mcp"],
+      "environment": {
+        "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
+      },
+      "enabled": true
+    },
     "windows-mcp": {
       "type": "local",
       "command": ["C:\\Users\\USER\\.local\\bin\\uvx.exe", "windows-mcp"],
+      "enabled": true
+    },
+    "windows-desktop-automation": {
+      "type": "local",
+      "command": ["node", "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"],
+      "enabled": true
+    },
+    "openclaw": {
+      "type": "local",
+      "command": ["npx", "-y", "openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
+      "enabled": true
+    },
+    "winapp-mcp": {
+      "type": "local",
+      "command": ["npx", "-y", "winapp-mcp"],
+      "enabled": true
+    },
+    "shell": {
+      "type": "local",
+      "command": ["npx", "-y", "super-shell-mcp"],
+      "enabled": true
+    },
+    "pdf": {
+      "type": "local",
+      "command": ["uvx", "mcp-pdf"],
+      "enabled": true
+    },
+    "superpowers": {
+      "type": "local",
+      "command": ["npx", "-y", "superpowers-mcp"],
       "enabled": true
     }
   }
