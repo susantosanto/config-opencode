@@ -5,49 +5,78 @@
       "prompt": "{file:./SYSTEM_PROMPT.md}"
     }
   },
-  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
+  "plugin": [
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
   "skills": {
-    "paths": ["C:/Users/USER/Documents/opencode-skills"]
+    "paths": [
+      "C:/Users/USER/Documents/opencode-skills",
+      "C:/Users/USER/.config/opencode/skills"
+    ]
   },
   "mcp": {
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "C:/Users/USER/Documents"],
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "C:/Users/USER/Documents"
+      ],
       "enabled": true
     },
     "playwright": {
       "type": "local",
-      "command": ["npx", "@playwright/mcp@latest", "--config", "C:\\Users\\USER\\.config\\opencode\\playwright-config.json"],
+      "command": [
+        "playwright-mcp",
+        "--browser",
+        "chromium",
+        "--headless"
+      ],
       "enabled": true
     },
     "chrome-devtools": {
       "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp", "--headless"],
+      "command": [
+        "chrome-devtools-mcp",
+        "--headless"
+      ],
       "enabled": true
     },
     "memory": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
+      ],
       "enabled": true
     },
     "sequential-thinking": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
+      ],
       "enabled": true
     },
     "fetch": {
       "type": "local",
-      "command": ["npx", "-y", "mcp-fetch-server"],
+      "command": [
+        "mcp-fetch-server"
+      ],
       "enabled": true
     },
     "git": {
       "type": "local",
-      "command": ["git-mcp-server"],
+      "command": [
+        "git-mcp-server"
+      ],
       "enabled": true
     },
     "time": {
       "type": "local",
-      "command": ["npx", "-y", "@mcpcentral/mcp-time"],
+      "command": [
+        "mcp-time"
+      ],
       "enabled": true
     },
     "context7": {
@@ -57,22 +86,33 @@
     },
     "excel-control": {
       "type": "local",
-      "command": ["npx", "-y", "@negokaz/excel-mcp-server"],
+      "command": [
+        "excel-mcp-server"
+      ],
       "enabled": true
     },
     "excel-mcp": {
       "type": "local",
-      "command": ["C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", "-m", "excel_mcp", "stdio"],
+      "command": [
+        "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-m",
+        "excel_mcp",
+        "stdio"
+      ],
       "enabled": true
     },
     "word": {
       "type": "local",
-      "command": ["npx", "-y", "@puchunjie/doc-tools-mcp"],
+      "command": [
+        "doc-tools-mcp"
+      ],
       "enabled": true
     },
     "google-sheets": {
       "type": "local",
-      "command": ["npx", "-y", "google-spreadsheet-mcp"],
+      "command": [
+        "google-spreadsheet-mcp"
+      ],
       "environment": {
         "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
       },
@@ -80,37 +120,56 @@
     },
     "windows-mcp": {
       "type": "local",
-      "command": ["C:\\Users\\USER\\.local\\bin\\uvx.exe", "windows-mcp"],
+      "command": [
+        "C:\\Users\\USER\\.local\\bin\\uvx.exe",
+        "windows-mcp"
+      ],
       "enabled": true
     },
     "windows-desktop-automation": {
       "type": "local",
-      "command": ["node", "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"],
+      "command": [
+        "node",
+        "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
+      ],
       "enabled": true
     },
     "openclaw": {
       "type": "local",
-      "command": ["npx", "-y", "openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
+      "command": [
+        "openclaw-mcp",
+        "--openclaw-url",
+        "http://127.0.0.1:18789"
+      ],
       "enabled": true
     },
     "winapp-mcp": {
       "type": "local",
-      "command": ["npx", "-y", "winapp-mcp"],
+      "command": [
+        "winapp-mcp"
+      ],
       "enabled": true
     },
     "shell": {
       "type": "local",
-      "command": ["npx", "-y", "super-shell-mcp"],
+      "command": [
+        "super-shell-mcp"
+      ],
       "enabled": true
     },
     "pdf": {
       "type": "local",
-      "command": ["uvx", "mcp-pdf"],
+      "command": [
+        "uvx",
+        "mcp-pdf"
+      ],
       "enabled": true
     },
     "superpowers": {
       "type": "local",
-      "command": ["npx", "-y", "superpowers-mcp"],
+      "command": [
+        "superpowers-mcp"
+      ],
       "enabled": true
     }
   }

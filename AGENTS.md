@@ -159,6 +159,7 @@ Setiap tugas diproses dengan 6 fase di background:
    - Simpan histori perubahan
 
 2. **Dapodik**:
+   - Baca konfigurasi dari `C:\Users\USER\.config\opencode\dapodik_config.json` untuk token, NPSN, dan URL
    - Ikuti template resmi
    - Validasi data sebelum input
    - Backup data berkala
@@ -202,14 +203,18 @@ Setiap tugas diproses dengan 6 fase di background:
 2. **Konfigurasi .opencode.json**: `contextPaths` menunjuk ke file
 3. **AGENTS.md di Proyek**: Override untuk proyek spesifik
 
-### B. Skill Menu Khusus
+### B. Konfigurasi Dapodik (Auto-load)
+File konfigurasi Dapodik tersimpan di: `C:\Users\USER\.config\opencode\dapodik_config.json`
+Selalu baca file ini untuk mendapatkan token, NPSN, dan URL endpoint sebelum mengakses Dapodik Web Service.
+
+### C. Skill Menu Khusus
 Skill "opencode-system-prompt" untuk:
 1. **Load System Prompt**: Memuat system prompt lengkap
 2. **Update System Prompt**: Mengupdate konten
 3. **Pilih Versi**: Versi ringkat atau detail
 4. **Export/Import**: Backup dan restore
 
-### C. Cara Penggunaan
+### D. Cara Penggunaan
 1. **Auto-load**: Otomatis setiap sesi baru
 2. **Manual Load**: Via skill menu
 3. **Update**: Edit file atau via skill
@@ -239,7 +244,17 @@ Aksi:
 5. Testing dengan data sample
 ```
 
-### Contoh 3: AI Prompt Engineering
+### Contoh 3: Download Data Peserta Didik
+```
+User: "download data peserta didik"
+Aksi:
+1. Baca konfigurasi dari dapodik_config.json
+2. Pastikan Dapodik berjalan di localhost:5774
+3. Jalankan script dapodik_download.py
+4. Verifikasi output file daftar_pd.xlsx
+```
+
+### Contoh 4: AI Prompt Engineering
 ```
 User: "Buatkan prompt untuk analisis data sekolah"
 Aksi:
