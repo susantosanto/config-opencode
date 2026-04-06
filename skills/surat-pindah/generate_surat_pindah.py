@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate Surat Pindah Sekolah - Otomatis dari data Dapodik
-Menggunakan template asli SK Pindah Sekolah.docx
+Generate Surat Pindah Sekolah - Menggunakan template sebagai base
+Copy template lalu replace data siswa dari Dapodik
 """
 
 import requests
@@ -9,22 +9,21 @@ import json
 import sys
 import os
 import re
+import shutil
 from datetime import datetime
 from docx import Document
-from docx.shared import Pt, Inches, Cm, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.oxml.ns import qn
-from docx.oxml import OxmlElement
 
 BASE_URL = "http://localhost:5774"
 TOKEN = "AlAiyPRTaYFDKLE"
 NPSN = "20205293"
 SEKOLAH = "SD NEGERI PASIRHALANG"
-ALAMAT_SEKOLAH = "Kp. Pasirhalang RT.03 RW.14"
 DESA = "Mandalamukti"
 KECAMATAN = "Cikalongwetan"
 KABUPATEN = "Bandung Barat"
 PROVINSI = "Jawa Barat"
+
+TEMPLATE_PATH = r"C:\Users\USER\Documents\SK Pindah Sekolah.docx"
+OUTPUT_FOLDER = r"C:\Users\USER\Documents\SK_Pindah"
 
 headers = {"Authorization": f"Bearer {TOKEN}", "Accept": "application/json"}
 
@@ -110,7 +109,6 @@ def select_student(students, non_interactive=False, choice_idx=None):
     if non_interactive:
         if choice_idx is not None and 0 <= choice_idx < len(students):
             return students[choice_idx]
-        # Auto-select first if no choice given
         return students[0]
 
     while True:
@@ -130,31 +128,63 @@ def select_student(students, non_interactive=False, choice_idx=None):
 
 
 def get_kelas_tingkat(nama_rombel):
-    """Konversi nama rombel ke format kelas dan tingkat"""
+    """Konversi nama rombel ke format kelas seperti template: 'II (Dua)'"""
     if not nama_rombel:
         return "-", "-"
 
     rombel_lower = nama_rombel.lower()
-
-    # Extract angka dari nama rombel
     match = re.search(r"(\d+)", rombel_lower)
     if match:
         angka = match.group(1)
-        tingkat_map = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI"}
-        tingkat_romawi = tingkat_map.get(angka, angka)
-        return f"{angka} ({tingkat_romawi})", tingkat_romawi
+        tingkat_map = {
+            "1": ("I", "Satu"),
+            "2": ("II", "Dua"),
+            "3": ("III", "Tiga"),
+            "4": ("IV", "Empat"),
+            "5": ("V", "Lima"),
+            "6": ("VI", "Enam"),
+        }
+        if angka in tingkat_map:
+            romawi, kata = tingkat_map[angka]
+            return f"{romawi} ({kata})", romawi
 
     return nama_rombel, nama_rombel
 
 
-def create_surat_pindah(siswa, output_folder, template_path=None):
-    """Buat surat pindah sekolah berdasarkan template asli"""
+def replace_paragraph_text(p, new_text):
+    """Replace all runs in a paragraph with new text, keeping first run's formatting"""
+    for run in p.runs:
+        run.text = ""
+    if p.runs:
+        p.runs[0].text = new_text
+    else:
+        p.add_run(new_text)
 
-    os.makedirs(output_folder, exist_ok=True)
+
+def replace_value_in_paragraph(p, new_value):
+    """Replace only the BOLD value runs in a paragraph, keeping label runs intact.
+    Template has label split across multiple runs, then bold runs for the value.
+    We find the first bold run and replace it with new_value, then clear remaining bold runs.
+    """
+    found_bold = False
+    for run in p.runs:
+        if run.bold:
+            if not found_bold:
+                run.text = new_value
+                found_bold = True
+            else:
+                run.text = ""
+        # Keep non-bold runs (label part) unchanged
+
+
+def create_surat_pindah(siswa):
+    """Buat surat pindah dengan copy template lalu replace data"""
+
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
     nama_siswa = siswa.get("nama", "siswa")
     nama_file = f"surat_mutasi_{nama_siswa.lower().replace(' ', '_')}.docx"
-    output_path = os.path.join(output_folder, nama_file)
+    output_path = os.path.join(OUTPUT_FOLDER, nama_file)
 
     # Ambil data siswa
     nisn = siswa.get("nisn", "-")
@@ -169,43 +199,35 @@ def create_surat_pindah(siswa, output_folder, template_path=None):
         else "-"
     )
 
-    # Ambil alamat dari data siswa atau gunakan default sekolah
-    alamat_jalan = siswa.get("alamat_jalan", "")
-    rt = siswa.get("rt", "")
-    rw = siswa.get("rw", "")
+    # Alamat
     dusun = siswa.get("nama_dusun", "")
+    alamat_jalan = siswa.get("alamat_jalan", "")
     desa = siswa.get("desa_kelurahan", DESA)
     kecamatan = siswa.get("kecamatan", KECAMATAN)
     kabupaten = siswa.get("kabupaten_kota", KABUPATEN)
-    provinsi = siswa.get("provinsi", PROVINSI)
 
-    # Format alamat lengkap
-    alamat_parts = []
+    # Format alamat line 1 (like template: "Kp. Cigondok Ds. Mandalamukti Kec. Cikalongwetan")
+    addr_parts_1 = []
     if dusun and dusun != "-":
-        alamat_parts.append(f"Kp. {dusun}")
+        addr_parts_1.append(f"Kp. {dusun}")
     elif alamat_jalan and alamat_jalan != "-":
-        alamat_parts.append(alamat_jalan)
-    if rt and rt != "-":
-        alamat_parts.append(f"RT.{rt}")
-    if rw and rw != "-":
-        alamat_parts.append(f"RW.{rw}")
+        addr_parts_1.append(alamat_jalan)
     if desa and desa != "-":
-        alamat_parts.append(f"Ds. {desa}")
+        addr_parts_1.append(f"Ds. {desa}")
     if kecamatan and kecamatan != "-":
-        alamat_parts.append(f"Kec. {kecamatan}")
+        addr_parts_1.append(f"Kec. {kecamatan}")
+    alamat_line1 = " ".join(addr_parts_1)
+
+    # Format alamat line 2 (like template: "Kab. Bandung Barat")
+    addr_parts_2 = []
     if kabupaten and kabupaten != "-":
-        alamat_parts.append(f"Kab. {kabupaten}")
+        addr_parts_2.append(f"Kab. {kabupaten}")
+    alamat_line2 = " ".join(addr_parts_2)
 
-    alamat_lengkap = (
-        " ".join(alamat_parts)
-        if alamat_parts
-        else f"Kp. {desa} Kec. {kecamatan} Kab. {kabupaten}"
-    )
+    # Kelas
+    kelas_str, _ = get_kelas_tingkat(nama_rombel)
 
-    # Konversi kelas
-    kelas_str, tingkat_romawi = get_kelas_tingkat(nama_rombel)
-
-    # Tanggal surat
+    # Tanggal & nomor surat
     today = datetime.now()
     bulan_map = {
         1: "Januari",
@@ -224,207 +246,46 @@ def create_surat_pindah(siswa, output_folder, template_path=None):
     tgl_surat = f"{today.day} {bulan_map[today.month]} {today.year}"
     nomor_surat = f"421.2/{today.strftime('%Y')}/SD - 007/{today.strftime('%Y')}"
 
-    # Buat dokumen baru
-    doc = Document()
+    # COPY template
+    shutil.copy2(TEMPLATE_PATH, output_path)
 
-    # Set margins
-    for section in doc.sections:
-        section.top_margin = Cm(2)
-        section.bottom_margin = Cm(2)
-        section.left_margin = Cm(2.5)
-        section.right_margin = Cm(2.5)
+    # Open and modify
+    doc = Document(output_path)
 
-    # Default font
-    style = doc.styles["Normal"]
-    font = style.font
-    font.name = "Times New Roman"
-    font.size = Pt(12)
-    pf = style.paragraph_format
-    pf.space_after = Pt(0)
-    pf.space_before = Pt(0)
-    pf.line_spacing = 1.15
+    # P01: Update nomor surat
+    replace_paragraph_text(doc.paragraphs[1], f"Nomor: {nomor_surat}")
 
-    # --- JUDUL SURAT ---
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = p.add_run("SURAT KETERANGAN PINDAH SEKOLAH")
-    run.bold = True
-    run.font.size = Pt(14)
-    run.font.name = "Times New Roman"
+    # P04: Nama siswa (bold value)
+    replace_value_in_paragraph(doc.paragraphs[4], nama_siswa)
 
-    # --- NOMOR SURAT ---
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = p.add_run(f"Nomor: {nomor_surat}")
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
+    # P05: NISN (bold value)
+    replace_value_in_paragraph(doc.paragraphs[5], nisn)
 
-    # Spasi
-    doc.add_paragraph()
+    # P06: Jenis Kelamin (bold value)
+    replace_value_in_paragraph(doc.paragraphs[6], jenis_kelamin)
 
-    # --- PEMBUKA ---
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(6)
-    run = p.add_run(
-        "Yang bertanda tangan dibawah ini, Kepala Sekolah Dasar Negeri Pasirhalang Desa Mandalamukti Kecamatan Cikalongwetan Kabupaten Bandung Barat dengan ini menyatakan bahwa :"
-    )
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
+    # P07: Murid Kelas (bold value)
+    replace_value_in_paragraph(doc.paragraphs[7], kelas_str)
 
-    # --- DATA SISWA ---
-    data_siswa = [
-        ("Nama", nama_siswa),
-        ("NISN/ No. Induk", nisn),
-        ("Jenis Kelamin", jenis_kelamin),
-        ("Murid Kelas", kelas_str),
-    ]
+    # P09: Nama Ayah (bold value)
+    nama_ayah_display = nama_ayah if nama_ayah and nama_ayah != "-" else "-"
+    replace_value_in_paragraph(doc.paragraphs[9], nama_ayah_display)
 
-    for label, value in data_siswa:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(2)
-        p.paragraph_format.left_indent = Cm(1)
-        run = p.add_run(f"{label:<20}: {value}")
-        run.font.size = Pt(12)
-        run.font.name = "Times New Roman"
+    # P10: Nama Ibu (bold value)
+    nama_ibu_display = nama_ibu if nama_ibu and nama_ibu != "-" else "-"
+    replace_value_in_paragraph(doc.paragraphs[10], nama_ibu_display)
 
-    # Spasi
-    doc.add_paragraph()
+    # P11: Alamat line 1 (bold value)
+    replace_value_in_paragraph(doc.paragraphs[11], alamat_line1)
 
-    # --- SURAT PERMOHONAN DARI ORANG TUA ---
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(6)
-    run = p.add_run(
-        "Sesuai dengan Surat Keterangan Permohonan Pindah dari orang tua/wali murid :"
-    )
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
+    # P12: Alamat line 2 (bold value)
+    if alamat_line2:
+        replace_value_in_paragraph(doc.paragraphs[12], alamat_line2)
+    else:
+        # Clear the paragraph
+        for run in doc.paragraphs[12].runs:
+            run.text = ""
 
-    data_ortu = [
-        ("Nama", nama_ayah if nama_ayah and nama_ayah != "-" else nama_siswa),
-        ("Ibu", nama_ibu if nama_ibu and nama_ibu != "-" else "-"),
-        ("Alamat", alamat_lengkap),
-    ]
-
-    for label, value in data_ortu:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(2)
-        p.paragraph_format.left_indent = Cm(1)
-        run = p.add_run(f"{label:<20}: {value}")
-        run.font.size = Pt(12)
-        run.font.name = "Times New Roman"
-
-    # Spasi
-    doc.add_paragraph()
-
-    # --- TUJUAN PINDAH ---
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(6)
-    run = p.add_run(
-        "Telah mengajukan pindah sekolah ke SD Negeri Girimukti di Kecamatan Cikalongwetan Kabupaten Bandung Barat - Jawabarat, bersama ini sertakan Laporan Hasil Belajar Siswa (LAPOR)."
-    )
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    # Spasi besar untuk tanda tangan
-    for _ in range(6):
-        doc.add_paragraph()
-
-    # --- TANDA TANGAN ---
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = p.add_run(f"Mandalamukti, {tgl_surat}")
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = p.add_run("Kepala Sekolah")
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    # Spasi untuk tanda tangan
-    for _ in range(5):
-        doc.add_paragraph()
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = p.add_run("(.........................)")
-    run.bold = True
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    # --- PEMISAH HALAMAN ---
-    doc.add_page_break()
-
-    # --- HALAMAN KEDUA (Untuk diisi sekolah tujuan) ---
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = p.add_run("SURAT KETERANGAN PINDAH SEKOLAH")
-    run.bold = True
-    run.font.size = Pt(14)
-    run.font.name = "Times New Roman"
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = p.add_run(f"Nomor: {nomor_surat}")
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    doc.add_paragraph()
-
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(6)
-    run = p.add_run(
-        "Setelah anak tersebut diterima di sekolah ini, isian dibawah ini harap diisi dan lembar kedua di kirim kembali pada kami."
-    )
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    doc.add_paragraph()
-
-    # --- TABEL DATA SEKOLAH TUJUAN ---
-    data_sekolah_tujuan = [
-        ("Nama Sekolah", ""),
-        ("Status Sekolah", ""),
-        ("Alamat", ""),
-        ("Desa/ Kelurahan", ""),
-        ("Kec/ Kab", ""),
-        ("Provinsi", ""),
-        ("Diterima Tanggal", ""),
-        ("Di Tingkat/ Kelas", ""),
-    ]
-
-    for label, value in data_sekolah_tujuan:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(4)
-        p.paragraph_format.left_indent = Cm(1)
-        dots = "." * 60
-        run = p.add_run(f"{label:<20}: {dots}")
-        run.font.size = Pt(12)
-        run.font.name = "Times New Roman"
-
-    # Spasi
-    for _ in range(4):
-        doc.add_paragraph()
-
-    # Tanda tangan sekolah tujuan
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = p.add_run("Kepala Sekolah")
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    for _ in range(5):
-        doc.add_paragraph()
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = p.add_run("(.........................)")
-    run.bold = True
-    run.font.size = Pt(12)
-    run.font.name = "Times New Roman"
-
-    # Simpan
     doc.save(output_path)
     print(f"\n[OK] Surat pindah berhasil dibuat!")
     print(f"[OK] File: {output_path}")
@@ -479,7 +340,6 @@ def main():
 
     print(f"\nMencari siswa dengan nama: '{nama_input}'...")
 
-    # Search students
     students = search_students(nama_input)
 
     if not students:
@@ -487,14 +347,11 @@ def main():
         print("\nTips:")
         print("  - Coba gunakan nama depan saja")
         print("  - Pastikan ejaan nama benar")
-        print("  - Cek apakah Dapodik sudah berjalan")
         sys.exit(1)
 
-    # Multiple results
     if len(students) > 1:
         display_student_options(students)
 
-        # Output JSON for Telegram bot parsing
         result_json = {
             "status": "multiple_found",
             "count": len(students),
@@ -520,7 +377,6 @@ def main():
                 students, non_interactive=True, choice_idx=choice_idx
             )
         elif non_interactive:
-            # Auto-select first
             selected = students[0]
             print(
                 f"\n[INFO] Multiple students found. Auto-selected: {selected.get('nama')}"
@@ -529,7 +385,6 @@ def main():
             try:
                 selected = select_student(students, non_interactive=False)
             except EOFError:
-                # Fallback to auto-select when running non-interactively
                 selected = students[0]
                 print(
                     f"\n[INFO] Multiple students found. Auto-selected: {selected.get('nama')}"
@@ -551,10 +406,8 @@ def main():
                 sys.exit(0)
 
     # Generate surat
-    output_folder = r"C:\Users\USER\Documents\SK_Pindah"
-    output_path = create_surat_pindah(siswa, output_folder)
+    output_path = create_surat_pindah(siswa)
 
-    # Output result JSON for Telegram bot
     result_json = {
         "status": "success",
         "student": {
