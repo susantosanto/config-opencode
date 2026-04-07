@@ -19,7 +19,9 @@
       "command": [
         "node",
         "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "C:/Users/USER/Documents"
+        "C:/",
+        "D:/",
+        "E:/"
       ],
       "enabled": true
     },
@@ -169,6 +171,18 @@
       "command": [
         "superpowers-mcp"
       ],
+      "enabled": true
+    },
+    "vision-mcp-server": {
+      "type": "local",
+      "command": [
+        "python",
+        "-m",
+        "vision_mcp_server.server"
+      ],
+      "environment": {
+        "GROQ_API_KEY": "${GROQ_API_KEY}"
+      },
       "enabled": true
     }
   }
