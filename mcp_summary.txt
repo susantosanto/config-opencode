@@ -1,0 +1,12 @@
+
+MCP Investigation Complete - Summary:
+- Only excel-mcp-server.exe is running (PID 13400)
+- Dapodik service (localhost:5774) is accessible
+- OpenClaw service (localhost:18789) is accessible  
+- Memory MCP service (localhost:3333) is NOT running (connection refused)
+- Most configured MCP servers are not running as processes
+- Full detailed report saved to mcp_status_report.txt
+
+Key Issue: Memory MCP server is not running, causing potential MCP errors.
+Recommendation: Start missing MCP servers using their configured commands.
+

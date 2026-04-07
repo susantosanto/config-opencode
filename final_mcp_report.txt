@@ -1,0 +1,32 @@
+
+MCP ERROR INVESTIGATION COMPLETE
+================================
+
+FINDINGS:
+---------
+1. ONLY ONE MCP SERVER RUNNING: excel-mcp-server.exe (PID 13400)
+2. DAPODIK SERVICE ACCESSIBLE: localhost:5774 (responding with HTML)
+3. OPENCLAW SERVICE ACCESSIBLE: localhost:18789 (web interface)
+4. MEMORY MCP SERVER NOT RUNNING: localhost:3333 (connection refused)
+5. MOST CONFIGURED MCP SERVERS INACTIVE: Not showing as processes
+
+PRIMARY ISSUE:
+--------------
+Memory MCP server is not running, which may cause MCP errors in Opencode.
+
+RECOMMENDED ACTION:
+-------------------
+Start the Memory MCP server using this command:
+node C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js
+
+ADDITIONAL STEPS:
+-----------------
+1. Check Opencode logs for MCP startup errors
+2. Verify all MCP packages are installed in node_modules
+3. Consider restarting Opencode to initialize MCP servers properly
+4. For complete details, see: mcp_status_report.txt
+
+SUMMARY:
+--------
+Most MCP servers are configured but not running. Starting the Memory MCP server should resolve immediate MCP errors.
+

@@ -1,0 +1,65 @@
+
+==================================================
+MCP INVESTIGATION REPORT - OPENCODE
+==================================================
+Date: 04/07/2026 12:40:34
+Investigation Complete
+
+SUMMARY:
+--------
+Based on the investigation of MCP (Model Context Protocol) services in the Opencode environment:
+
+1. CONFIGURED MCP SERVERS (from opencode.json):
+   - Filesystem: Enabled, pointing to C:/Users/USER/Documents
+   - Playwright: Enabled (Chromium headless)
+   - Chrome DevTools: Enabled (headless)
+   - Memory: Enabled
+   - Sequential Thinking: Enabled
+   - Fetch: Enabled
+   - Git: Enabled
+   - Time: Enabled
+   - Context7: Remote (enabled)
+   - Excel Control: Enabled
+   - Excel MCP: Enabled (Python-based)
+   - Word: Enabled
+   - Google Sheets: Enabled (with service account)
+   - Windows MCP: Enabled
+   - Windows Desktop Automation: Enabled
+   - OpenClaw: Enabled (port 18789)
+   - WinApp MCP: Enabled
+   - Shell: Enabled
+   - PDF: Enabled
+   - Superpowers: Enabled
+
+2. RUNNING PROCESSES CHECK:
+   - Only excel-mcp-server.exe (PID 13400) found running
+   - No other MCP-related processes detected (node, playwright, mcp, etc.)
+
+3. CONNECTIVITY TESTS:
+   - Dapodik Service (localhost:5774): CONNECTED - Returned HTML login page
+   - OpenClaw Service (localhost:18789): CONNECTED - Returned web interface
+   - Memory MCP Service (localhost:3333): FAILED - Connection refused
+   - Common MCP ports (8080, 3000, 5000): ALL FAILED - No listeners
+
+4. ISSUES IDENTIFIED:
+   - Memory MCP server is not running (connection refused on port 3333)
+   - Most configured MCP servers are not running as processes
+   - Only Excel MCP and Dapodik/OpenClaw services are active
+
+5. RECOMMENDATIONS:
+   - Start missing MCP servers using their respective commands
+   - Check Opencode logs for startup errors
+   - Verify MCP server installations in node_modules
+   - Consider using the superpowers-mcp server for skill management
+   - Ensure required dependencies are installed for each MCP server
+
+RECOMMENDED ACTIONS:
+1. Start the Memory MCP server: node C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js
+2. Start other missing MCP servers similarly
+3. Check Opencode configuration for any misconfigured commands
+4. Verify that all required MCP packages are installed
+5. Consider restarting Opencode to initialize MCP servers properly
+
+END OF REPORT
+==================================================
+
