@@ -19,9 +19,15 @@
       "command": [
         "node",
         "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "C:/",
-        "D:/",
-        "E:/"
+        "C:\\Users\\USER",
+        "C:\\Users\\USER\\Documents",
+        "C:\\Users\\USER\\Downloads",
+        "C:\\Users\\USER\\Desktop",
+        "C:\\Users\\USER\\Videos",
+        "C:\\Users\\USER\\Music",
+        "C:\\Users\\USER\\Pictures",
+        "C:\\Users\\USER\\AppData",
+        "C:\\Users\\USER\\.config"
       ],
       "enabled": true
     },
@@ -83,7 +89,7 @@
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
-      "enabled": true
+      "enabled": false
     },
     "excel-control": {
       "type": "local",
@@ -122,10 +128,13 @@
     "windows-mcp": {
       "type": "local",
       "command": [
-        "C:\\Users\\USER\\.local\\bin\\uvx.exe",
-        "windows-mcp"
+        "uvx",
+        "windows-mcp",
+        "--transport",
+        "stdio"
       ],
-      "enabled": true
+      "enabled": true,
+      "timeout": 60000
     },
     "windows-desktop-automation": {
       "type": "local",
@@ -164,7 +173,8 @@
         "uvx",
         "mcp-pdf"
       ],
-      "enabled": true
+      "enabled": true,
+      "timeout": 60000
     },
     "superpowers": {
       "type": "local",
