@@ -6,12 +6,11 @@
     }
   },
   "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git"
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "@warp-dot-dev/opencode-warp"
   ],
   "skills": {
-    "paths": [
-      "C:/Users/USER/.config/opencode/skills"
-    ]
+    "paths": ["C:/Users/USER/.config/opencode/skills"]
   },
   "mcp": {
     "filesystem": {
@@ -33,20 +32,12 @@
     },
     "playwright": {
       "type": "local",
-      "command": [
-        "playwright-mcp",
-        "--browser",
-        "chromium",
-        "--headless"
-      ],
+      "command": ["playwright-mcp", "--browser", "chromium", "--headless"],
       "enabled": true
     },
     "chrome-devtools": {
       "type": "local",
-      "command": [
-        "chrome-devtools-mcp",
-        "--headless"
-      ],
+      "command": ["chrome-devtools-mcp", "--headless"],
       "enabled": true
     },
     "memory": {
@@ -67,23 +58,17 @@
     },
     "fetch": {
       "type": "local",
-      "command": [
-        "mcp-fetch-server"
-      ],
+      "command": ["mcp-fetch-server"],
       "enabled": true
     },
     "git": {
       "type": "local",
-      "command": [
-        "git-mcp-server"
-      ],
+      "command": ["git-mcp-server"],
       "enabled": true
     },
     "time": {
       "type": "local",
-      "command": [
-        "mcp-time"
-      ],
+      "command": ["mcp-time"],
       "enabled": true
     },
     "context7": {
@@ -93,9 +78,7 @@
     },
     "excel-control": {
       "type": "local",
-      "command": [
-        "excel-mcp-server"
-      ],
+      "command": ["excel-mcp-server"],
       "enabled": true
     },
     "excel-mcp": {
@@ -110,16 +93,12 @@
     },
     "word": {
       "type": "local",
-      "command": [
-        "doc-tools-mcp"
-      ],
+      "command": ["doc-tools-mcp"],
       "enabled": true
     },
     "google-sheets": {
       "type": "local",
-      "command": [
-        "google-spreadsheet-mcp"
-      ],
+      "command": ["google-spreadsheet-mcp"],
       "environment": {
         "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
       },
@@ -127,12 +106,7 @@
     },
     "windows-mcp": {
       "type": "local",
-      "command": [
-        "uvx",
-        "windows-mcp",
-        "--transport",
-        "stdio"
-      ],
+      "command": ["uvx", "windows-mcp", "--transport", "stdio"],
       "enabled": true,
       "timeout": 60000
     },
@@ -146,50 +120,33 @@
     },
     "openclaw": {
       "type": "local",
-      "command": [
-        "openclaw-mcp",
-        "--openclaw-url",
-        "http://127.0.0.1:18789"
-      ],
+      "command": ["openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
       "enabled": true
     },
     "winapp-mcp": {
       "type": "local",
-      "command": [
-        "winapp-mcp"
-      ],
+      "command": ["winapp-mcp"],
       "enabled": true
     },
     "shell": {
       "type": "local",
-      "command": [
-        "super-shell-mcp"
-      ],
+      "command": ["super-shell-mcp"],
       "enabled": true
     },
     "pdf": {
       "type": "local",
-      "command": [
-        "uvx",
-        "mcp-pdf"
-      ],
+      "command": ["uvx", "mcp-pdf"],
       "enabled": true,
       "timeout": 60000
     },
     "superpowers": {
       "type": "local",
-      "command": [
-        "superpowers-mcp"
-      ],
+      "command": ["superpowers-mcp"],
       "enabled": true
     },
     "vision-mcp-server": {
       "type": "local",
-      "command": [
-        "python",
-        "-m",
-        "vision_mcp_server.server"
-      ],
+      "command": ["python", "-m", "vision_mcp_server.server"],
       "environment": {
         "GROQ_API_KEY": "${GROQ_API_KEY}"
       },
