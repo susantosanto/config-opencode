@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "qwen-code/coder-model",
   "mode": {
     "primary": {
       "prompt": "{file:./SYSTEM_PROMPT.md}"
@@ -7,30 +8,15 @@
   },
   "plugin": [
     "superpowers@git+https://github.com/obra/superpowers.git",
-    "@warp-dot-dev/opencode-warp"
+    "@warp-dot-dev/opencode-warp",
+    "file:///C:/Users/USER/.config/opencode/oh-my-opencode-slim",
+    "opencode-qwen-cli-auth"
   ],
   "skills": {
     "paths": ["C:/Users/USER/.config/opencode/skills"]
   },
   "mcp": {
     "filesystem": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "C:\\Users\\USER",
-        "C:\\Users\\USER\\Documents",
-        "C:\\Users\\USER\\Downloads",
-        "C:\\Users\\USER\\Desktop",
-        "C:\\Users\\USER\\Videos",
-        "C:\\Users\\USER\\Music",
-        "C:\\Users\\USER\\Pictures",
-        "C:\\Users\\USER\\AppData",
-        "C:\\Users\\USER\\.config"
-      ],
-      "enabled": true
-    },
-    "playwright": {
       "type": "local",
       "command": ["playwright-mcp", "--browser", "chromium", "--headless"],
       "enabled": true
