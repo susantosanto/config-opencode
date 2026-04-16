@@ -117,8 +117,7 @@ opencode
 ```
 opencode-config/
 ├── opencode.json              # Konfigurasi utama (MCP, skills, plugins, agents)
-├── AGENTS.md                  # System prompt utama
-├── SYSTEM_PROMPT.md           # User profile & identitas
+├── AGENTS.md                  # System prompt utama (v2.0)
 ├── user-settings.json         # Settings tambahan (theme, agents, context paths)
 ├── dapodik_config.json        # Konfigurasi Dapodik (token, NPSN, URL)
 ├── playwright-config.json     # Konfigurasi Playwright browser
@@ -504,7 +503,7 @@ openclaw gateway
 |---------|-------|
 | **Default Model** | `qwen-code/coder-model` |
 | **Mode** | `primary` |
-| **Prompt Source** | `{file:./SYSTEM_PROMPT.md}` |
+| **Prompt Source** | `{file:./AGENTS.md}` |
 
 ### User Settings:
 | Setting | Value |

@@ -3,7 +3,7 @@
   "model": "qwen-code/coder-model",
   "mode": {
     "primary": {
-      "prompt": "{file:./SYSTEM_PROMPT.md}"
+      "prompt": "{file:./AGENTS.md}"
     }
   },
   "plugin": [
