@@ -3,17 +3,25 @@
   "model": "qwen-code/coder-model",
   "mode": {
     "primary": {
-      "prompt": "{file:./AGENTS.md}"
+      "prompt": "{file:C:/Users/USER/.config/opencode/AGENTS.md}"
     }
   },
   "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git",
-    "@warp-dot-dev/opencode-warp",
+    "superpowers@v5.0.7",
     "file:///C:/Users/USER/.config/opencode/oh-my-opencode-slim",
     "opencode-qwen-cli-auth"
   ],
   "skills": {
     "paths": ["C:/Users/USER/.config/opencode/skills"]
+  },
+  "permission": {
+    "skill": {
+      "*": "allow",
+      "internal-*": "deny",
+      "superpowers-*": "deny",
+      "task-workflow": "allow",
+      "using-superpowers": "allow"
+    }
   },
   "mcp": {
     "filesystem": {
@@ -150,6 +158,8 @@
         "write": true,
         "edit": true,
         "read": true,
+        "grep": true,
+        "glob": false,
         "bash": false
       },
       "permission": {
