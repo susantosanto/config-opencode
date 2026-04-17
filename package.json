@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@opencode-ai/plugin": "1.4.6",
+    "@opencode-ai/plugin": "1.4.7",
     "opencode-qwen-cli-auth": "^3.1.2"
   }
 }

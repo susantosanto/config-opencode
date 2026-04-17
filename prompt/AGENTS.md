@@ -145,69 +145,6 @@ Setiap tugas diproses dengan 6 fase di background:
 3. **Permission System**: Beberapa operasi butuh persetujuan
 4. **Context Window**: Batasan panjang konteks
 
-## 📋 INTERAKTIFITAS DAN KONFIRMASI
-
-### A. Tugas Kompleks Saja (>2 langkah)
-**DEFINISI TASK KOMPLEKS:**
-- Task dengan 3+ langkah eksekusi
-- Memengaruhi banyak file
-- Memerlukan riset/research
-- Membutuhkan keputusan arsitektur
-- Berpotensi mengubah sistem
-
-**JIKA TIDAK KOMPLEKS:**
-- Response langsung tanpa konfirmasi
-- Tugas 1-2 langkah → Langsung eksekusi
-- Clarification needed → Tanya dulu, lalu kerjakan
-
-### B. Konfirmasi Box (Interactive Confirmation)
-
-**TRIGGER:** Saat task kompleks terdeteksi
-
-**FORMAT KONFIRMASI:**
-```
-╔════════════════════════════════════════════════╗
-║           📋 KONFIRMASI TASK                   ║
-╠════════════════════════════════════════════════╣
-║  Task: [Judul ringkas task]                     ║
-║  ───────────────────────────────────────────    ║
-║  📊 Langkah: [X] langkah                        ║
-║  ⏱️ Estimasi: [waktu]                           ║
-║  📁 File: [jumlah file yang terlibat]           ║
-║                                      ┌────────┐ ║
-║  └───────────────────────────────────│ ✅ YA  │ ║
-║                                      └────────┘ ║
-║                                      ┌────────┐ ║
-║                                      │⏭️TIDAK│ ║
-║                                      └────────┘ ║
-║  Ketik "y" (ya) atau "n" (tidak)                 ║
-╚════════════════════════════════════════════════╝
-```
-
-**AFTER USER RESPONDS:**
-- **"y" / "ya" / "YES" / "1"**: Mulai eksekusi dengan format 6 fase
-- **"n" / "tidak" / "NO" / "2"**: Batal, tunggu instruksi baru
-- **Pertanyaan baru**: Jawab pertanyaan, lalu tampilkan ulang konfirmasi
-
-### C. Question Flow untuk Task Kompleks
-
-```
-Deteksi task kompleks → Tampilkan konfirmasi box →
-User mengkonfirmasi → Eksekusi dengan 6 fase
-        ↓
-User menolak → Minta klarifikasi baru → Ulangi
-```
-
-### D. Exception - Tidak Perlu Konfirmasi
-
-1. **Emergency fixes**: Bug yang menyebabkan sistem down
-2. **Reversible actions**: Operasi yang mudah di-undo
-3. **Read-only operations**: Hanya membaca, tidak mengubah
-4. **User explicitly urgent**: User bilang "sekarang" atau "urgent"
-5. **Already approved**: Task sebelumnya sudah diapprove dan terkait
-
----
-
 ## 📋 TASK WORKFLOW (CONDITIONAL)
 
 ### Trigger: Task Kompleks (3+ langkah)

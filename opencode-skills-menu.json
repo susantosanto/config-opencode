@@ -1,0 +1,38 @@
+{
+  "skills": {
+    "awesome-design-md": {
+      "name": "awesome-design-md",
+      "description": "Build stunning frontend dengan design system brand populer (Stripe, Vercel, Airbnb, dll)",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\awesome-design-md\\SKILL.md",
+      "category": "ui-ux"
+    },
+    "dapodik-scraper": {
+      "name": "dapodik-scraper",
+      "description": "Download data pesertaidik dari Dapodik Web Service ke Excel",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\dapodik-scraper\\SKILL.md",
+      "category": "data"
+    },
+    "dapodik-student-lookup": {
+      "name": "dapodik-student-lookup",
+      "description": "Cari data siswa berdasarkan nama dari Dapodik",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\dapodik-student-lookup\\SKILL.md",
+      "category": "data"
+    },
+    "dapodik-gtk-lookup": {
+      "name": "dapodik-gtk-lookup",
+      "description": "Cari data GTK/Guru dari Dapodik",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\dapodik-gtk-lookup\\SKILL.md",
+      "category": "data"
+    },
+    "surat-pindah": {
+      "name": "surat-pindah",
+      "description": "Buat surat pindah sekolah otomatis",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\surat-pindah\\SKILL.md",
+      "category": "documents"
+    }
+  },
+  "menu": {
+    "title": "🎨 OpenCode Skills Menu",
+    "trigger": "/skill"
+  }
+}
