@@ -230,6 +230,7 @@ opencode-config/
 ### Custom Skills (Lokal):
 | Skill | Fungsi |
 |-------|--------|
+| `browser-use` | Browser automation AI untuk web scraping, Dapodik automation |
 | `dapodik-scraper` | Download data peserta didik dari Dapodik Web Service |
 | `dapodik-gtk-lookup` | Cari data GTK dari Dapodik Web Service |
 | `dapodik-student-lookup` | Cari data siswa dari Dapodik Web Service |

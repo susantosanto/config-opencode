@@ -153,6 +153,11 @@ You have access to the following specialized skills. To activate a skill and rec
     <description>Use when: Mau mulai fitur/fitur baru - Socratic design refinement SEBELUM implementasi</description>
     <location>C:\Users\USER\.gemini\skills\superpowers-brainstorm\SKILL.md</location>
   </skill>
+<skill>
+    <name>browser-use</name>
+    <description>Integrasi dengan Browser Use API untuk otomatisasi browser berbasis AI. Gunakan untuk web scraping, fill formulir otomatis, login ke website, dan automation tugas-tugas di browser. Sangat berguna untuk Dapodik automation, BOS Online, dan administrasi sekolah.</description>
+    <location>C:\Users\USER\.config\opencode\skills\browser-use\SKILL.md</location>
+  </skill>
   <skill>
     <name>skill-list-install</name>
     <description>Menu interaktif untuk install OpenCode skills dari skills.sh marketplace</description>
