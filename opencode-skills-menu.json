@@ -29,6 +29,12 @@
       "description": "Buat surat pindah sekolah otomatis",
       "path": "C:\\Users\\USER\\.config\\opencode\\skills\\surat-pindah\\SKILL.md",
       "category": "documents"
+    },
+    "graphify": {
+      "name": "graphify",
+      "description": "Build knowledge graph dari codebase - pahami struktur project lebih cepat",
+      "path": "C:\\Users\\USER\\.config\\opencode\\skills\\graphify\\SKILL.md",
+      "category": "code-analysis"
     }
   },
   "menu": {

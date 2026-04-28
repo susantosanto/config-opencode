@@ -11,3 +11,19 @@ Thumbs.db
 # Environment files
 .env
 .env.local
+.gitignore
+antigravity-accounts.json
+antigravity-accounts.json.*.tmp
+antigravity-signature-cache.json
+antigravity-logs/
+
+# Graphify outputs (can be regenerated)
+graphify-out/
+.graphifyignore
+
+# ARKAS database (local only)
+arkas.db
+
+# Temp research files
+*_research*.py
+temp_*.py

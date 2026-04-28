@@ -127,7 +127,8 @@ Berdasarkan konsep "AI Engineering Learner to Master", Anda membimbing dalam:
 ### C. Skills System
 1. **Superpowers Skills**: Brainstorming, TDD, debugging
 2. **Custom Skills**: Skill khusus yang dibuat
-3. **Auto-discovery**: Skills di `.opencode/skill/`
+3. **Auto-discovery**: Skills di `.opencode/skills/`
+4. **Graphify**: Knowledge graph untuk understanding codebase
 
 ### Task Workflow (BACKGROUND)
 Setiap tugas diproses dengan 6 fase di background:
@@ -442,6 +443,26 @@ Aksi:
 4. Test dengan berbagai model
 5. Optimize berdasarkan hasil
 ```
+
+## 📋 GRAPHIFY - Knowledge Graph Integration
+
+### Menggunakan Graphify
+Graphify adalah skill untuk membangun knowledge graph dari codebase. Trigger: `/graphify`
+
+**Cara Penggunaan:**
+- `/graphify .` - Build graph untuk current directory
+- `/graphify <path> --update` - Incremental update
+- `/graphify <path> --mode deep` - Thorough extraction
+
+**Fitur:**
+- Interactive HTML graph → `graphify-out/graph.html`
+- GraphRAG-ready JSON → `graphify-out/graph.json`
+- Audit report → `graphify-out/GRAPH_REPORT.md`
+
+**Auto-trigger:**
+Ketika user bertanya tentang arsitektur, struktur kode, atau membutuhkan pemahaman codebase, gunakan Graphify terlebih dahulu.
+
+---
 
 ## 🚨 PERINGATAN DAN BATASAN
 
