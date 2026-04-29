@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "google/antigravity-gemini-3-flash",
+  "model": "opencode/big-pickle",
   "provider": {
     "google": {
       "models": {
@@ -48,6 +48,56 @@
           }
         }
       }
+    },
+    "kilo": {
+      "name": "Kilo Gateway",
+      "models": {
+        "kilo/auto": {
+          "id": "kilo/auto",
+          "name": "Kilo Auto",
+          "limit": { "context": 200000, "output": 64000 }
+        },
+        "stepfun/step-3.5-flash:free": {
+          "id": "stepfun/step-3.5-flash:free",
+          "name": "Step 3.5 Flash (Free)",
+          "limit": { "context": 256000, "output": 64000 }
+        },
+        "poolside/laguna-xs.2:free": {
+          "id": "poolside/laguna-xs.2:free",
+          "name": "Laguna XS 2 (Free)",
+          "limit": { "context": 128000, "output": 32000 }
+        },
+        "poolside/laguna-m.1:free": {
+          "id": "poolside/laguna-m.1:free",
+          "name": "Laguna M 1 (Free)",
+          "limit": { "context": 128000, "output": 64000 }
+        },
+        "nvidia/nemotron-3-super-120b-a12b:free": {
+          "id": "nvidia/nemotron-3-super-120b-a12b:free",
+          "name": "Nemotron 3 Super (Free)",
+          "limit": { "context": 128000, "output": 32000 }
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "name": "Nemotron Nano Reasoning (Free)",
+          "limit": { "context": 128000, "output": 32000 }
+        },
+        "tencent/hy3-preview:free": {
+          "id": "tencent/hy3-preview:free",
+          "name": "Hy3 Preview (Free)",
+          "limit": { "context": 128000, "output": 32000 }
+        },
+        "baidu/qianfan-ocr-fast:free": {
+          "id": "baidu/qianfan-ocr-fast:free",
+          "name": "Qianfan OCR Fast (Free)",
+          "limit": { "context": 64000, "output": 32000 }
+        },
+        "inclusionai/ling-2.6-1t:free": {
+          "id": "inclusionai/ling-2.6-1t:free",
+          "name": "Ling 2.6 1T (Free)",
+          "limit": { "context": 128000, "output": 32000 }
+        }
+      }
     }
   },
   "mode": {
@@ -57,7 +107,8 @@
   },
   "plugin": [
     "file:///C:/Users/USER/.config/opencode/oh-my-opencode-slim",
-    "opencode-antigravity-auth@latest"
+    "opencode-antigravity-auth@latest",
+    "opencode-kilo-auth@latest"
   ],
   "skills": {
     "paths": ["C:/Users/USER/.config/opencode/skills"]
@@ -196,7 +247,7 @@
     "orchestrator": {
       "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
       "mode": "primary",
-      "model": "opencode/minimax-m2.5-free",
+      "model": "kilo/stepfun/step-3.5-flash:free",
       "temperature": 0.3,
       "tools": {
         "task": true,
@@ -211,6 +262,47 @@
         "task": {
           "*": "deny"
         }
+      }
+    },
+    "build": {
+      "description": "Build agent - implementasi kode",
+      "mode": "primary",
+      "model": "opencode/minimax-m2.5-free",
+      "temperature": 0.2,
+      "tools": {
+        "task": true,
+        "write": true,
+        "edit": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "bash": true
+      }
+    },
+    "plan": {
+      "description": "Plan agent - planning dan analisis",
+      "mode": "primary",
+      "model": "opencode/minimax-m2.5-free",
+      "temperature": 0.3,
+      "tools": {
+        "task": true,
+        "write": true,
+        "edit": true,
+        "read": true,
+        "grep": false,
+        "glob": false,
+        "bash": false
+      }
+    },
+    "council": {
+      "description": "Council agent - multi-LLM consensus",
+      "mode": "primary",
+      "model": "opencode/minimax-m2.5-free",
+      "temperature": 0.5,
+      "tools": {
+        "task": true,
+        "write": true,
+        "read": true
       }
     }
   }
