@@ -162,7 +162,7 @@
     "time": {
       "type": "local",
       "command": ["mcp-time"],
-      "enabled": true
+      "enabled": false
     },
     "context7": {
       "type": "remote",
@@ -209,7 +209,7 @@
         "node",
         "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
       ],
-      "enabled": true
+      "enabled": false
     },
     "openclaw": {
       "type": "local",
@@ -247,7 +247,7 @@
     "orchestrator": {
       "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
       "mode": "primary",
-      "model": "kilo/stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "temperature": 0.3,
       "tools": {
         "task": true,
@@ -267,7 +267,7 @@
     "build": {
       "description": "Build agent - implementasi kode",
       "mode": "primary",
-      "model": "opencode/minimax-m2.5-free",
+      "model": "opencode/big-pickle",
       "temperature": 0.2,
       "tools": {
         "task": true,
@@ -297,7 +297,7 @@
     "council": {
       "description": "Council agent - multi-LLM consensus",
       "mode": "primary",
-      "model": "opencode/minimax-m2.5-free",
+      "model": "opencode/big-pickle",
       "temperature": 0.5,
       "tools": {
         "task": true,
