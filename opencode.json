@@ -6,45 +6,123 @@
       "models": {
         "antigravity-gemini-3-pro": {
           "name": "Gemini 3 Pro (Antigravity)",
-          "limit": { "context": 1048576, "output": 65535 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "variants": {
-            "low": { "thinkingLevel": "low" },
-            "high": { "thinkingLevel": "high" }
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
           }
         },
         "antigravity-gemini-3.1-pro": {
           "name": "Gemini 3.1 Pro (Antigravity)",
-          "limit": { "context": 1048576, "output": 65535 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "variants": {
-            "low": { "thinkingLevel": "low" },
-            "high": { "thinkingLevel": "high" }
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
           }
         },
         "antigravity-gemini-3-flash": {
           "name": "Gemini 3 Flash (Antigravity)",
-          "limit": { "context": 1048576, "output": 65536 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "variants": {
-            "minimal": { "thinkingLevel": "minimal" },
-            "low": { "thinkingLevel": "low" },
-            "medium": { "thinkingLevel": "medium" },
-            "high": { "thinkingLevel": "high" }
+            "minimal": {
+              "thinkingLevel": "minimal"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
           }
         },
         "antigravity-claude-sonnet-4-6": {
           "name": "Claude Sonnet 4.6 (Antigravity)",
-          "limit": { "context": 200000, "output": 8192 },
-          "modalities": { "input": ["text", "image"], "output": ["text"] }
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         },
         "antigravity-claude-opus-4-6-thinking": {
           "name": "Claude Opus 4.6 Thinking (Antigravity)",
-          "limit": { "context": 200000, "output": 8192 },
-          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "variants": {
-            "low": { "thinkingBudget": 4000 },
-            "max": { "thinkingBudget": 32000 }
+            "low": {
+              "thinkingBudget": 4000
+            },
+            "max": {
+              "thinkingBudget": 32000
+            }
           }
         }
       }
@@ -55,47 +133,74 @@
         "kilo/auto": {
           "id": "kilo/auto",
           "name": "Kilo Auto",
-          "limit": { "context": 200000, "output": 64000 }
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          }
         },
         "stepfun/step-3.5-flash:free": {
           "id": "stepfun/step-3.5-flash:free",
           "name": "Step 3.5 Flash (Free)",
-          "limit": { "context": 256000, "output": 64000 }
+          "limit": {
+            "context": 256000,
+            "output": 64000
+          }
         },
         "poolside/laguna-xs.2:free": {
           "id": "poolside/laguna-xs.2:free",
           "name": "Laguna XS 2 (Free)",
-          "limit": { "context": 128000, "output": 32000 }
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
         },
         "poolside/laguna-m.1:free": {
           "id": "poolside/laguna-m.1:free",
           "name": "Laguna M 1 (Free)",
-          "limit": { "context": 128000, "output": 64000 }
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          }
         },
         "nvidia/nemotron-3-super-120b-a12b:free": {
           "id": "nvidia/nemotron-3-super-120b-a12b:free",
           "name": "Nemotron 3 Super (Free)",
-          "limit": { "context": 128000, "output": 32000 }
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
         },
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "name": "Nemotron Nano Reasoning (Free)",
-          "limit": { "context": 128000, "output": 32000 }
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
         },
         "tencent/hy3-preview:free": {
           "id": "tencent/hy3-preview:free",
           "name": "Hy3 Preview (Free)",
-          "limit": { "context": 128000, "output": 32000 }
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
         },
         "baidu/qianfan-ocr-fast:free": {
           "id": "baidu/qianfan-ocr-fast:free",
           "name": "Qianfan OCR Fast (Free)",
-          "limit": { "context": 64000, "output": 32000 }
+          "limit": {
+            "context": 64000,
+            "output": 32000
+          }
         },
         "inclusionai/ling-2.6-1t:free": {
           "id": "inclusionai/ling-2.6-1t:free",
           "name": "Ling 2.6 1T (Free)",
-          "limit": { "context": 128000, "output": 32000 }
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
         }
       }
     }
@@ -111,7 +216,9 @@
     "opencode-kilo-auth@latest"
   ],
   "skills": {
-    "paths": ["C:/Users/USER/.config/opencode/skills"]
+    "paths": [
+      "C:/Users/USER/.config/opencode/skills"
+    ]
   },
   "permission": {
     "skill": {
@@ -123,14 +230,19 @@
     }
   },
   "mcp": {
-    "filesystem": {
+"filesystem": {
       "type": "local",
-      "command": ["playwright-mcp", "--browser", "chromium", "--headless"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:/Users/USER"
+      ],
       "enabled": true
     },
-    "chrome-devtools": {
+    "playwright-mcp": {
       "type": "local",
-      "command": ["chrome-devtools-mcp", "--headless"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-playwright"],
       "enabled": true
     },
     "memory": {
@@ -151,27 +263,59 @@
     },
     "fetch": {
       "type": "local",
-      "command": ["mcp-fetch-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
       "enabled": true
     },
     "git": {
       "type": "local",
-      "command": ["git-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ],
       "enabled": true
-    },
-    "time": {
-      "type": "local",
-      "command": ["mcp-time"],
-      "enabled": false
     },
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
-      "enabled": false
+      "enabled": true
+    },
+    "github-mcp-server": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "enabled": true
+    },
+"everything": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ],
+      "enabled": true
+    },
+    "jcodemunch": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@gravellelabs/jcodemunch"
+      ],
+      "enabled": true
     },
     "excel-control": {
       "type": "local",
-      "command": ["excel-mcp-server"],
+      "command": [
+        "excel-mcp-server"
+      ],
       "enabled": true
     },
     "excel-mcp": {
@@ -186,12 +330,16 @@
     },
     "word": {
       "type": "local",
-      "command": ["doc-tools-mcp"],
+      "command": [
+        "doc-tools-mcp"
+      ],
       "enabled": true
     },
     "google-sheets": {
       "type": "local",
-      "command": ["google-spreadsheet-mcp"],
+      "command": [
+        "google-spreadsheet-mcp"
+      ],
       "environment": {
         "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
       },
@@ -199,7 +347,12 @@
     },
     "windows-mcp": {
       "type": "local",
-      "command": ["uvx", "windows-mcp", "--transport", "stdio"],
+      "command": [
+        "uvx",
+        "windows-mcp",
+        "--transport",
+        "stdio"
+      ],
       "enabled": true,
       "timeout": 60000
     },
@@ -209,32 +362,45 @@
         "node",
         "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
       ],
-      "enabled": false
+      "enabled": true
     },
     "openclaw": {
       "type": "local",
-      "command": ["openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
+      "command": [
+        "openclaw-mcp",
+        "--openclaw-url",
+        "http://127.0.0.1:18789"
+      ],
       "enabled": true
     },
     "winapp-mcp": {
       "type": "local",
-      "command": ["winapp-mcp"],
+      "command": [
+        "winapp-mcp"
+      ],
       "enabled": true
     },
     "shell": {
       "type": "local",
-      "command": ["super-shell-mcp"],
+      "command": [
+        "super-shell-mcp"
+      ],
       "enabled": true
     },
     "pdf": {
       "type": "local",
-      "command": ["uvx", "mcp-pdf"],
+      "command": [
+        "uvx",
+        "mcp-pdf"
+      ],
       "enabled": true,
       "timeout": 60000
     },
     "superpowers": {
       "type": "local",
-      "command": ["superpowers-mcp"],
+      "command": [
+        "superpowers-mcp"
+      ],
       "enabled": true
     },
     "vision-mcp-server": {
@@ -244,7 +410,13 @@
     },
     "browser-use": {
       "type": "local",
-      "command": ["uvx", "--from", "browser-use[cli]", "browser-use", "--mcp"],
+      "command": [
+        "uvx",
+        "--from",
+        "browser-use[cli]",
+        "browser-use",
+        "--mcp"
+      ],
       "environment": {
         "GOOGLE_API_KEY": "${GOOGLE_API_KEY}",
         "MCP_MODEL_PROVIDER": "gemini",
@@ -256,13 +428,15 @@
       },
       "enabled": true,
       "timeout": 120000
-    }
+    },
+    
   },
   "agent": {
     "orchestrator": {
       "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
       "mode": "primary",
       "model": "opencode/big-pickle",
+      "maxTokens": 25000,
       "temperature": 0.3,
       "tools": {
         "task": true,
@@ -283,6 +457,7 @@
       "description": "Build agent - implementasi kode",
       "mode": "primary",
       "model": "opencode/big-pickle",
+      "maxTokens": 30000,
       "temperature": 0.2,
       "tools": {
         "task": true,
@@ -297,7 +472,8 @@
     "plan": {
       "description": "Plan agent - planning dan analisis",
       "mode": "primary",
-      "model": "opencode/minimax-m2.5-free",
+      "model": "stepfun/step-3.5-flash:free",
+      "maxTokens": 12000,
       "temperature": 0.3,
       "tools": {
         "task": true,
@@ -313,11 +489,26 @@
       "description": "Council agent - multi-LLM consensus",
       "mode": "primary",
       "model": "opencode/big-pickle",
+      "maxTokens": 20000,
       "temperature": 0.5,
       "tools": {
         "task": true,
         "write": true,
         "read": true
+      }
+    },
+    "task": {
+      "description": "Task agent - background operations (search, analysis)",
+      "mode": "primary",
+      "model": "stepfun/step-3.5-flash:free",
+      "maxTokens": 8000,
+      "temperature": 0.2,
+      "tools": {
+        "read": true,
+        "grep": true,
+        "websearch": true,
+        "webfetch": true,
+        "task": false
       }
     }
   }

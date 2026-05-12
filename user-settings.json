@@ -1,16 +1,19 @@
 {
   "contextPaths": [
-    "AGENTS.md",
-    "system-prompt-opencode.md"
+    "AGENTS.md"
   ],
   "agents": {
     "coder": {
-      "model": "claude-4-sonnet",
-      "maxTokens": 50000,
+      "model": "opencode/big-pickle",
+      "maxTokens": 30000,
       "reasoningEffort": "medium"
     },
+    "task": {
+      "model": "stepfun/step-3.5-flash:free",
+      "maxTokens": 16000
+    },
     "title": {
-      "model": "gpt-4o-mini",
+      "model": "stepfun/step-3.5-flash:free",
       "maxTokens": 80
     }
   },
@@ -18,5 +21,10 @@
     "theme": "opencode"
   },
   "debug": false,
-  "autoCompact": true
+  "autoCompact": true,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  }
 }
