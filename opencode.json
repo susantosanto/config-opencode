@@ -241,6 +241,21 @@
       "type": "local",
       "command": ["python", "-m", "vision_mcp_server.server"],
       "enabled": true
+    },
+    "browser-use": {
+      "type": "local",
+      "command": ["uvx", "--from", "browser-use[cli]", "browser-use", "--mcp"],
+      "environment": {
+        "GOOGLE_API_KEY": "${GOOGLE_API_KEY}",
+        "MCP_MODEL_PROVIDER": "gemini",
+        "MCP_MODEL_NAME": "gemini-2.0-flash",
+        "MCP_USE_VISION": "true",
+        "MCP_MAX_STEPS": "30",
+        "MCP_MAX_ACTIONS_PER_STEP": "5",
+        "BROWSER_HEADLESS": "false"
+      },
+      "enabled": true,
+      "timeout": 120000
     }
   },
   "agent": {

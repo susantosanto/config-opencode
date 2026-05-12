@@ -198,6 +198,7 @@ AI ORCHESTRATOR (Minggu 9-12)
 | Tanggal | Hari Ke | Topik | Yang Dipelajari | Notes |
 |---------|---------|-------|-----------------|-------|
 | 13 Apr 2026 | - | Planning | Roadmap 90 hari dibuat | Start dari nol Python |
+| 14 Apr 2026 | Hari 1 | Python: Variables & Types | str, int, float, bool, f-string, input/output | Program biodata siswa |
 
 ---
 
