@@ -335,16 +335,6 @@
       ],
       "enabled": true
     },
-    "google-sheets": {
-      "type": "local",
-      "command": [
-        "google-spreadsheet-mcp"
-      ],
-      "environment": {
-        "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "C:\\Users\\USER\\.openclaw\\credentials\\google-service-account.json"
-      },
-      "enabled": true
-    },
     "windows-mcp": {
       "type": "local",
       "command": [
@@ -361,15 +351,6 @@
       "command": [
         "node",
         "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "openclaw": {
-      "type": "local",
-      "command": [
-        "openclaw-mcp",
-        "--openclaw-url",
-        "http://127.0.0.1:18789"
       ],
       "enabled": true
     },

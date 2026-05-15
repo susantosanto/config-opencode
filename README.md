@@ -13,7 +13,6 @@ Konfigurasi personal untuk OpenCode AI - dikustomasi untuk Operator Sekolah & We
 - [Plugin](#-plugin)
 - [Custom Skills](#-custom-skills)
 - [Agent Configuration](#-agent-configuration)
-- [OpenClaw Integration](#-openclaw-integration)
 - [Telegram Bot](#-telegram-bot)
 - [Cara Penggunaan](#-cara-penggunaan)
 - [Troubleshooting](#-troubleshooting)
@@ -96,11 +95,7 @@ cd mcp-windows-desktop-automation
 npm install
 ```
 
-### Langkah 4: Install OpenClaw
-
-Lihat section [OpenClaw Integration](#-openclaw-integration) di bawah untuk panduan lengkap.
-
-### Langkah 5: Verifikasi
+### Langkah 4: Verifikasi
 
 ```bash
 # Jalankan OpenCode
@@ -158,7 +153,7 @@ opencode-config/
 
 ## 🤖 Fitur & MCP
 
-### MCP Servers Aktif (18 servers):
+### MCP Servers Aktif (16 servers):
 
 | MCP | Type | Command | Fungsi |
 |-----|------|---------|--------|
@@ -173,10 +168,8 @@ opencode-config/
 | `excel-control` | local | `excel-mcp-server` | Live Excel editing via COM |
 | `excel-mcp` | local | `python -m excel_mcp stdio` | Python Excel operations (Python 3.13) |
 | `word` | local | `doc-tools-mcp` | Word document processing |
-| `google-sheets` | local | `google-spreadsheet-mcp` | Google Sheets API (service account) |
 | `windows-mcp` | local | `uvx windows-mcp --transport stdio` | Windows automation (via uvx) |
 | `windows-desktop-automation` | local | Node.js custom path | Desktop UI automation |
-| `openclaw` | local | `openclaw-mcp --openclaw-url http://127.0.0.1:18789` | OpenClaw integration |
 | `winapp-mcp` | local | `winapp-mcp` | Windows app UI automation |
 | `shell` | local | `super-shell-mcp` | Shell execution |
 | `pdf` | local | `uvx mcp-pdf` | PDF processing (via uvx) |
@@ -188,7 +181,6 @@ opencode-config/
 | Variable | Sumber | Digunakan Oleh |
 |----------|--------|----------------|
 | `GROQ_API_KEY` | [groq.com](https://groq.com) | `vision-mcp-server` |
-| `GOOGLE_SERVICE_ACCOUNT_KEY_PATH` | `C:\Users\USER\.openclaw\credentials\google-service-account.json` | `google-sheets` |
 
 ---
 
@@ -283,217 +275,15 @@ opencode-config/
 
 ---
 
-## 🦞 OpenClaw Integration
-
-### Apa itu OpenClaw?
-
-OpenClaw adalah AI gateway autonom yang berjalan sebagai service lokal, menyediakan:
-- **Multi-provider AI** - Google, Qwen, Groq, OpenRouter, Mistral, OpenCode
-- **Telegram Bot** built-in - Remote access via Telegram
-- **MCP Server Hub** - Excel, Word, PDF, Google Workspace, Playwright, Security Tools
-- **Workspace Management** - File system, knowledge base, skills
-- **Gateway API** - Port `18789` untuk integrasi dengan OpenCode
-
-### Arsitektur Integrasi
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                        Telegram                              │
-│                   (@santo_xcode_bot)                         │
-└──────────────────────────┬───────────────────────────────────┘
-                           │ Telegram Bot API
-                           ▼
-┌──────────────────────────────────────────────────────────────┐
-│                    OpenClaw Gateway                          │
-│                  Port: 18789 (loopback)                      │
-│                                                              │
-│  • Multi-provider AI (Google, Qwen, Groq, OpenRouter)       │
-│  • MCP Servers (Excel, Word, PDF, Sheets, Drive, etc.)      │
-│  • Telegram Bot Integration                                 │
-│  • Workspace & Skills Management                            │
-│  • Hooks: session-memory, command-logger, boot-md           │
-└───────────┬──────────────────────────────┬───────────────────┘
-            │ openclaw-mcp                 │ HTTP API
-            ▼                              ▼
-┌───────────────────────┐    ┌─────────────────────────────────┐
-│    OpenCode CLI       │    │  External Tools / Scripts       │
-│  (MCP Client)         │    │  (curl, webhooks, etc.)         │
-└───────────────────────┘    └─────────────────────────────────┘
-```
-
-### Cara Install OpenClaw dari 0
-
-#### Langkah 1: Install OpenClaw
-
-```bash
-# Install via npm (global)
-npm install -g openclaw
-
-# Atau gunakan installer resmi
-# Kunjungi: https://openclaw.ai (cek docs resmi untuk cara terbaru)
-```
-
-#### Langkah 2: Setup Awal
-
-```bash
-# Jalankan wizard setup
-openclaw onboard
-
-# Wizard akan meminta:
-# - API keys untuk berbagai provider (Google, Qwen, OpenRouter, dll)
-# - Telegram bot token (dari @BotFather)
-# - Workspace directory
-```
-
-#### Langkah 3: Konfigurasi OpenClaw
-
-File konfigurasi: `C:\Users\USER\.openclaw\openclaw.json`
-
-Konfigurasi yang sudah terpasang:
-| Komponen | Setting |
-|----------|---------|
-| **Gateway Port** | `18789` (loopback) |
-| **Auth Mode** | `token` |
-| **Primary Model** | `groq/llama-3.3-70b-versatile` |
-| **Fallback Models** | `gemini-2.5-flash-lite`, `llama-3.1-8b-instant`, `kimi-k2.5` |
-| **Workspace** | `C:\Users\USER\.openclaw\workspace` |
-| **Telegram** | Enabled (DM policy: allowlist) |
-| **Allowed User ID** | `6776956601` |
-
-#### Langkah 4: Setup Provider API Keys
-
-```bash
-# Buka konfigurasi
-notepad "%USERPROFILE%\.openclaw\openclaw.json"
-
-# Pastikan auth profiles sudah terkonfigurasi:
-# - opencode:default (API key)
-# - openrouter:default (API key)
-# - google:default (API key)
-# - groq: API key (gratis, signup di groq.com)
-# - qwen: Dashscope API key
-```
-
-#### Langkah 5: Jalankan OpenClaw Gateway
-
-```bash
-# Via batch file (sudah tersedia)
-"%USERPROFILE%\.openclaw\start-gateway-user.bat"
-
-# Atau langsung
-openclaw gateway
-
-# Gateway akan berjalan di http://127.0.0.1:18789
-```
-
-#### Langkah 6: Verifikasi OpenClaw
-
-```bash
-# Cek status gateway
-curl http://127.0.0.1:18789/api/status
-
-# Cek via OpenCode
-# openclaw-mcp sudah terkonfigurasi di opencode.json
-# Saat OpenCode start, otomatis connect ke OpenClaw
-```
-
-### Integrasi OpenClaw dengan OpenCode
-
-OpenClaw terintegrasi dengan OpenCode melalui **openclaw MCP server**:
-
-```json
-// opencode.json
-{
-  "mcp": {
-    "openclaw": {
-      "type": "local",
-      "command": ["openclaw-mcp", "--openclaw-url", "http://127.0.0.1:18789"],
-      "enabled": true
-    }
-  }
-}
-```
-
-#### Yang Memungkinkan:
-1. **OpenCode → OpenClaw** - Kirim task ke OpenClaw gateway via MCP
-2. **Shared MCP Servers** - Google Sheets MCP menggunakan credentials yang sama
-3. **Telegram Bot** - OpenClaw menangani Telegram, OpenCode bisa akses via MCP
-4. **Multi-Provider AI** - OpenClaw menyediakan akses ke banyak model provider
-
-### OpenClaw MCP Servers (10 servers):
-
-| MCP | Command | Fungsi |
-|-----|---------|--------|
-| `excel` | `mcp-excel.exe` | Excel COM automation |
-| `filesystem` | `npx @modelcontextprotocol/server-filesystem` | File access (Downloads folder) |
-| `pdf` | `npx @modelcontextprotocol/server-pdf` | PDF text extraction |
-| `word` | `word_mcp_server.exe` | Word COM automation |
-| `screenshot` | `python -m windows_capture_mcp.server` | Windows screenshot |
-| `playwright` | `npx @playwright/mcp` | Browser automation (Arc) |
-| `google-apps-script` | Node.js custom | Manage Apps Script projects |
-| `google-sheets` | `npx google-spreadsheet-mcp` | Google Sheets API |
-| `google-drive` | `npx @modelcontextprotocol/server-gdrive` | Google Drive access |
-| `security-tools` | Node.js custom | Security testing tools |
-| `mcp-for-security` | Docker `cyprox/mcp-for-security` | 22+ security tools (nmap, nuclei, dll) |
-
-### OpenClaw Folder Structure:
-
-```
-C:\Users\USER\.openclaw\
-├── openclaw.json              # Konfigurasi utama OpenClaw
-├── credentials/
-│   ├── google-service-account.json   # Google service account
-│   └── telegram-pairing.json        # Telegram pairing info
-├── workspace/                 # Workspace directory
-├── skills/                    # OpenClaw skills
-├── mcp-servers/               # MCP server binaries
-├── agents/                    # Agent configurations
-├── commands/                  # Custom commands
-├── config/                    # Additional configs
-├── logs/                      # Log files
-├── cache/                     # Cache directory
-├── telegram/                  # Telegram bot data
-├── security-tools/            # Security testing tools
-└── *.md                       # Dokumentasi setup & guides
-```
-
----
-
 ## 📱 Telegram Bot
 
-### Dua Sistem Telegram:
+### Status Telegram
 
-Konfigurasi ini memiliki **dua sistem Telegram** yang berbeda:
+Telegram bot `@santo_xcode_bot` sebelumnya dikelola oleh OpenClaw Gateway. Setelah OpenClaw dihapus, bot ini **tidak aktif**.
 
-#### 1. OpenClaw Telegram (Primary)
-- **Dikelola oleh:** OpenClaw Gateway
-- **Bot:** `@santo_xcode_bot`
-- **Konfigurasi:** `C:\Users\USER\.openclaw\openclaw.json` → `channels.telegram`
-- **Status:** ✅ Enabled
-- **Fitur:** Remote AI access, multi-provider, MCP tools
-
-#### 2. OpenCode Telegram Bot (@grinev)
-- **Dikelola oleh:** `@grinev/opencode-telegram-bot`
-- **Konfigurasi:** `%APPDATA%\opencode-telegram-bot\.env`
-- **Status:** Konfigurasi terpisah
-- **Dokumentasi:** Lihat [`TELEGRAM.md`](TELEGRAM.md)
-
-### Quick Start Telegram (via OpenClaw):
-
-```bash
-# 1. Pastikan OpenClaw gateway running
-openclaw gateway
-
-# 2. Bot otomatis connect ke Telegram
-# Kirim pesan ke @santo_xcode_bot di Telegram
-
-# 3. Commands yang tersedia:
-# /start    - Mulai sesi
-# /status   - Cek status
-# /sessions - List sesi
-# /new      - Sesi baru
-# /abort    - Batalkan task
-```
+Untuk mengaktifkan kembali Telegram bot, gunakan alternatif:
+- **Hermes Agent** — `hermes gateway setup` (mendukung Telegram)
+- **OpenCode Telegram Bot** (`@grinev/opencode-telegram-bot`) — konfigurasi terpisah di `%APPDATA%\opencode-telegram-bot\.env`
 
 ---
 
@@ -551,26 +341,14 @@ Ketik di OpenCode:
 // Contoh penggunaan Excel MCP
 await excel_mcp.read_excel({ filepath: "data.xlsx" })
 
-// Contoh Google Sheets
-await google_sheets.read_values({ spreadsheetId: "...", range: "Sheet1!A1:D10" })
-
-// Contoh OpenClaw
-await openclaw.chat({ message: "Buatkan laporan BOS" })
+// Contoh Windows Desktop Automation
+await winapp_mcp.click_element({ appId: "...", name: "Button" })
 ```
 
 ### Dapodik:
 ```bash
 # Pastikan Dapodik berjalan di localhost:5774
 # Gunakan skill dapodik-scraper untuk download data
-```
-
-### OpenClaw:
-```bash
-# Start gateway
-openclaw gateway
-
-# Via Telegram: kirim pesan ke @santo_xcode_bot
-# Via OpenCode: gunakan openclaw MCP
 ```
 
 ---
@@ -586,24 +364,6 @@ uvx --help
 
 # Cek log OpenCode untuk error detail
 # Pastikan command path di opencode.json benar
-```
-
-### OpenClaw Gateway Tidak Response:
-```bash
-# Cek apakah gateway running
-netstat -ano | findstr 18789
-
-# Restart gateway
-taskkill /F /IM openclaw.exe
-openclaw gateway
-```
-
-### Google Sheets Error:
-```bash
-# Pastikan service account file ada
-dir "%USERPROFILE%\.openclaw\credentials\google-service-account.json"
-
-# Pastikan sheet sudah di-share ke email service account
 ```
 
 ### Vision MCP Error:
