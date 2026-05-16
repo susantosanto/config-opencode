@@ -230,19 +230,18 @@
     }
   },
   "mcp": {
-"filesystem": {
+    "filesystem": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
         "C:/Users/USER"
       ],
       "enabled": true
     },
     "playwright-mcp": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-playwright"],
+      "command": ["node", "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"],
       "enabled": true
     },
     "memory": {
@@ -264,9 +263,8 @@
     "fetch": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-fetch"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\mcp-fetch-server\\dist\\index.js"
       ],
       "enabled": true
     },
@@ -293,12 +291,11 @@
       ],
       "enabled": true
     },
-"everything": {
+    "everything": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-everything"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-everything\\dist\\index.js"
       ],
       "enabled": true
     },
@@ -314,7 +311,8 @@
     "excel-control": {
       "type": "local",
       "command": [
-        "excel-mcp-server"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@negokaz\\excel-mcp-server\\dist\\launcher.js"
       ],
       "enabled": true
     },
@@ -331,7 +329,8 @@
     "word": {
       "type": "local",
       "command": [
-        "doc-tools-mcp"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@puchunjie\\doc-tools-mcp\\dist\\mcp-server.js"
       ],
       "enabled": true
     },
@@ -357,14 +356,16 @@
     "winapp-mcp": {
       "type": "local",
       "command": [
-        "winapp-mcp"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\winapp-mcp\\bin\\winapp-mcp.js"
       ],
       "enabled": true
     },
     "shell": {
       "type": "local",
       "command": [
-        "super-shell-mcp"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\super-shell-mcp\\build\\index.js"
       ],
       "enabled": true
     },
@@ -380,7 +381,8 @@
     "superpowers": {
       "type": "local",
       "command": [
-        "superpowers-mcp"
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\superpowers-mcp\\out\\server.js"
       ],
       "enabled": true
     },
