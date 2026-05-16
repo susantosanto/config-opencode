@@ -109,6 +109,21 @@ Agentic AI: tujuan jelas, fallback, monitor/log, safety.
 
 ---
 
+## 🎯 SKILL KARPATHY - Behavioral Guidelines
+
+**Tersedia:** `karpathy-skills` — Pedoman coding Andrej Karpathy
+
+4 prinsip untuk mengurangi kesalahan coding LLM:
+1. **Think Before Coding** — Nyatakan asumsi, tanya jika ragu, tampilkan tradeoff
+2. **Simplicity First** — Kode minimal, tanpa spekulasi/fitur yang tidak diminta
+3. **Surgical Changes** — Sentuh hanya yang perlu, jangan refactor yang tidak rusak
+4. **Goal-Driven Execution** — Definisi sukses yang terverifikasi, loop sampai passing
+
+**Trigger:** Coding task, refactoring, debugging, code review, planning implementation.
+**Cara pakai:** `skill` → `karpathy-skills` atau ketik "karpathy" saat coding.
+
+---
+
 ## 🎯 AGENT DELEGATION RULES
 
 Delegate ke specialist berdasarkan task type:
@@ -155,6 +170,20 @@ User: "Buatkan script untuk input data Dapodik otomatis"
 **Contoh 3: Download Data PD**
 User: "download data peserta didik"
 → Baca config → Pastikan Dapodik running → Jalankan script → Verifikasi output
+
+---
+
+## 🎯 SKILL DESIGN.MD - Google Design System
+
+**Tersedia:** `design-md` — Format spesifikasi design system dari Google Labs
+
+`DESIGN.md` memberi agent pemahaman visual identity yang persisten via:
+- **YAML front matter** — Token desain machine-readable (warna, tipografi, spacing)
+- **Markdown prose** — Rationale desain human-readable
+
+**Trigger:** Membangun frontend, desain UI, perlu konsistensi visual.
+**Cara pakai:** `skill` → `design-md` atau buat file `DESIGN.md` di proyek.
+**Integrasi:** Bekerja bareng `awesome-design-md` untuk template brand.
 
 ---
 

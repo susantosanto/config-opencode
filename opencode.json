@@ -203,6 +203,27 @@
           }
         }
       }
+    },
+    "gitlawb": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "GitLawb Free Gateway",
+      "options": {
+        "baseURL": "https://opengateway.gitlawb.com/v1"
+      },
+      "models": {
+        "mimo-v2-flash": {
+          "name": "MiMo V2 Flash (gratis)"
+        },
+        "mimo-v2.5": {
+          "name": "MiMo V2.5 (gratis, reasoning)"
+        },
+        "mimo-v2.5-pro": {
+          "name": "MiMo V2.5 Pro (gratis, best)"
+        },
+        "google/gemini-3.1-flash-lite-preview": {
+          "name": "Gemini 3.1 Flash Lite (gratis)"
+        }
+      }
     }
   },
   "mode": {
