@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "postinstall": "echo '✓ @google/design.md terinstall. Jalankan: npx @google/design.md lint DESIGN.md'"
+  },
   "dependencies": {
+    "@google/design.md": "^0.1.0",
     "@opencode-ai/plugin": "1.4.7",
     "opencode-qwen-cli-auth": "^3.1.2"
   }

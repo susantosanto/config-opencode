@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/big-pickle",
+  "model": "kilo/stepfun/step-3.5-flash:free",
   "provider": {
     "google": {
       "models": {
@@ -203,27 +203,6 @@
           }
         }
       }
-    },
-    "gitlawb": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "GitLawb Free Gateway",
-      "options": {
-        "baseURL": "https://opengateway.gitlawb.com/v1"
-      },
-      "models": {
-        "mimo-v2-flash": {
-          "name": "MiMo V2 Flash (gratis)"
-        },
-        "mimo-v2.5": {
-          "name": "MiMo V2.5 (gratis, reasoning)"
-        },
-        "mimo-v2.5-pro": {
-          "name": "MiMo V2.5 Pro (gratis, best)"
-        },
-        "google/gemini-3.1-flash-lite-preview": {
-          "name": "Gemini 3.1 Flash Lite (gratis)"
-        }
-      }
     }
   },
   "mode": {
@@ -234,7 +213,8 @@
   "plugin": [
     "file:///C:/Users/USER/.config/opencode/oh-my-opencode-slim",
     "opencode-antigravity-auth@latest",
-    "opencode-kilo-auth@latest"
+    "opencode-kilo-auth@latest",
+    "./plugins/caveman/plugin.js"
   ],
   "skills": {
     "paths": [
@@ -262,7 +242,10 @@
     },
     "playwright-mcp": {
       "type": "local",
-      "command": ["node", "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"],
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"
+      ],
       "enabled": true
     },
     "memory": {
@@ -310,6 +293,9 @@
         "-y",
         "@modelcontextprotocol/server-github"
       ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
       "enabled": true
     },
     "everything": {
@@ -409,7 +395,11 @@
     },
     "vision-mcp-server": {
       "type": "local",
-      "command": ["python", "-m", "vision_mcp_server.server"],
+      "command": [
+        "python",
+        "-m",
+        "vision_mcp_server.server"
+      ],
       "enabled": true
     },
     "browser-use": {
@@ -433,13 +423,21 @@
       "enabled": true,
       "timeout": 120000
     },
-    
+    "caveman-shrink": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "caveman-shrink"
+      ],
+      "enabled": true
+    }
   },
   "agent": {
     "orchestrator": {
       "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
       "mode": "primary",
-      "model": "opencode/big-pickle",
+      "model": "kilo/stepfun/step-3.5-flash:free",
       "maxTokens": 25000,
       "temperature": 0.3,
       "tools": {
@@ -460,7 +458,7 @@
     "build": {
       "description": "Build agent - implementasi kode",
       "mode": "primary",
-      "model": "opencode/big-pickle",
+      "model": "kilo/stepfun/step-3.5-flash:free",
       "maxTokens": 30000,
       "temperature": 0.2,
       "tools": {
@@ -492,7 +490,7 @@
     "council": {
       "description": "Council agent - multi-LLM consensus",
       "mode": "primary",
-      "model": "opencode/big-pickle",
+      "model": "kilo/stepfun/step-3.5-flash:free",
       "maxTokens": 20000,
       "temperature": 0.5,
       "tools": {
