@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "kilo/stepfun/step-3.5-flash:free",
+  "model": "anthropic/claude-sonnet-4-5",
   "provider": {
     "google": {
       "models": {
@@ -127,6 +127,28 @@
         }
       }
     },
+    "zhipu": {
+      "apiKey": "${ZHIPU_API_KEY}",
+      "baseURL": "https://open.bigmodel.cn/api/paas/v4/",
+      "models": {
+        "glm-4-flash": {
+          "id": "glm-4-flash",
+          "name": "GLM-4 Flash (Zhipu)",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "glm-4": {
+          "id": "glm-4",
+          "name": "GLM-4 (Zhipu)",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        }
+      }
+    },
     "kilo": {
       "name": "Kilo Gateway",
       "models": {
@@ -203,6 +225,10 @@
           }
         }
       }
+    },
+    "opencode": {
+      "name": "OpenCode Zen",
+      "models": {}
     }
   },
   "mode": {
@@ -211,7 +237,6 @@
     }
   },
   "plugin": [
-    "file:///C:/Users/USER/.config/opencode/oh-my-opencode-slim",
     "opencode-antigravity-auth@latest",
     "opencode-kilo-auth@latest",
     "./plugins/caveman/plugin.js"
@@ -230,6 +255,7 @@
       "using-superpowers": "allow"
     }
   },
+  "lsp": true,
   "mcp": {
     "filesystem": {
       "type": "local",
@@ -272,18 +298,12 @@
       ],
       "enabled": true
     },
-    "git": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-git"
-      ],
-      "enabled": true
-    },
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      },
       "enabled": true
     },
     "github-mcp-server": {
@@ -296,22 +316,14 @@
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       },
-      "enabled": true
+      "enabled": true,
+      "timeout": 60000
     },
     "everything": {
       "type": "local",
       "command": [
         "node",
         "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-everything\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "jcodemunch": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@gravellelabs/jcodemunch"
       ],
       "enabled": true
     },
@@ -346,8 +358,7 @@
       "command": [
         "uvx",
         "windows-mcp",
-        "--transport",
-        "stdio"
+        "serve"
       ],
       "enabled": true,
       "timeout": 60000
@@ -430,6 +441,22 @@
         "-y",
         "caveman-shrink"
       ],
+      "enabled": true,
+      "timeout": 60000
+    },
+    "ast-grep": {
+      "type": "local",
+      "command": [
+        "uv",
+        "run",
+        "--directory",
+        "C:/Users/USER/.config/opencode/ast-grep-mcp",
+        "python",
+        "main.py"
+      ],
+      "environment": {
+        "PATH": "C:/Users/USER/AppData/Local/Programs/Python/Python313/Scripts;C:/Users/USER/.config/opencode/ast-grep-mcp/bin;${PATH}"
+      },
       "enabled": true
     }
   },
@@ -513,5 +540,6 @@
         "task": false
       }
     }
-  }
+  },
+  "autoupdate": false
 }
