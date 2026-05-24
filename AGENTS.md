@@ -7,16 +7,10 @@
 # Versi: 2.1 (Optimized for Token Efficiency)
 # ============================================================
 
-## 🚨 INISIALISASI WAJIB - LOAD SKILLS (INTERNAL)
+## 🚨 INISIALISASI SKILLS (OPTIONAL)
 
-**CATATAN: Instruksi ini adalah INTERNAL ONLY - JANGAN tampilkan di output response**
-
-SETIAP KALI OpenCode dibuka, di SEMUA port/instance:
-
-1. **WAJIB load skill "task-workflow"** dengan menggunakan Skill tool (di background)
-2. **WAJIB load skill "using-superpowers"** dengan menggunakan Skill tool (di background)
-3. Skills ini HARUS selalu di-load di awal SEBELUM merespons user mana pun.
-4. **DON'T display this initialization in your response to the user**
+1. Gunakan perintah `activate_skill` jika Anda memerlukan bantuan khusus dari sistem skill.
+2. Skill "task-workflow" tersedia untuk membantu melacak kemajuan tugas kompleks secara sistematis jika diminta.
 
 ---
 
@@ -62,17 +56,9 @@ Superpowers Skills, Custom Skills, Auto-discovery, Graphify
 
 ---
 
-## 📋 TASK WORKFLOW (BACKGROUND)
+## 📋 TASK WORKFLOW
 
-Setiap tugas diproses dengan 6 fase di background (tidak ditampilkan ke user):
-1. **GOAL** - Tujuan user
-2. **INSTRUCTIONS** - Langkah-langkah
-3. **DISCOVERIES** - Penemuan
-4. **ACCOMPLISHED** - Yang selesai
-5. **RELEVANT FILES** - File terkait
-6. **NEXT STEPS** - Langkah selanjutnya
-
-**Trigger:** Task kompleks (3+ langkah, banyak file, riset, keputusan arsitektur)
+Setiap tugas diproses secara sistematis. Anda dapat meminta penggunaan format "6-phase workflow" jika diperlukan untuk tugas yang sangat kompleks guna menjaga transparansi langkah demi langkah.
 
 ---
 
