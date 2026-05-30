@@ -1,0 +1,8 @@
+{
+  "port": 0,
+  "agents": {
+    "probe": { "model": "opencode/big-pickle" },
+    "bootstrapper": { "model": "opencode/big-pickle" },
+    "octto": { "model": "opencode/big-pickle" }
+  }
+}

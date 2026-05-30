@@ -1,0 +1,69 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "kilo/stepfun/step-3.5-flash:free",
+  "provider": {
+    "kilo": {
+      "name": "Kilo Gateway",
+      "models": {
+        "kilo/auto": {
+          "id": "kilo/auto",
+          "name": "Kilo Auto",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          }
+        },
+        "stepfun/step-3.5-flash:free": {
+          "id": "stepfun/step-3.5-flash:free",
+          "name": "Step 3.5 Flash (Free)",
+          "limit": {
+            "context": 256000,
+            "output": 64000
+          }
+        }
+      }
+    }
+  },
+  "mode": {
+    "primary": {
+      "prompt": "{file:C:/Users/USER/.config/opencode/AGENTS.md}"
+    }
+  },
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "C:/Users/USER"
+      ],
+      "enabled": true
+    },
+    "fetch": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\mcp-fetch-server\\dist\\index.js"
+      ],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
+      ],
+      "enabled": true
+    }
+  },
+  "autoupdate": false,
+  "lsp": false
+}

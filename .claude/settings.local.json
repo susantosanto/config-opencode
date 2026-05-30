@@ -1,0 +1,20 @@
+{
+  "enabledMcpjsonServers": [
+    "playwright",
+    "memory",
+    "sequential-thinking",
+    "filesystem",
+    "fetch",
+    "git",
+    "time",
+    "excel",
+    "word",
+    "google-sheets",
+    "openclaw",
+    "winapp-mcp",
+    "shell",
+    "pdf",
+    "superpowers",
+    "everything"
+  ]
+}

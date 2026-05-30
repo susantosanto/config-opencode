@@ -229,6 +229,24 @@
     "opencode": {
       "name": "OpenCode Zen",
       "models": {}
+    },
+    "freellmapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "FreeLLMAPI",
+      "options": {
+        "baseURL": "http://localhost:3001/v1",
+        "apiKey": "freellmapi-05adc1675f2532df391b04ec5e12223d73a07e2e02690ac3"
+      },
+      "models": {
+        "auto": {
+          "id": "auto",
+          "name": "FreeLLMAPI Auto Router",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          }
+        }
+      }
     }
   },
   "mode": {
@@ -239,6 +257,7 @@
   "plugin": [
     "opencode-antigravity-auth@latest",
     "opencode-kilo-auth@latest",
+    "octto",
     "./plugins/caveman/plugin.js"
   ],
   "skills": {
@@ -464,7 +483,7 @@
     "orchestrator": {
       "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
       "mode": "primary",
-      "model": "kilo/stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "maxTokens": 25000,
       "temperature": 0.3,
       "tools": {
@@ -485,7 +504,7 @@
     "build": {
       "description": "Build agent - implementasi kode",
       "mode": "primary",
-      "model": "kilo/stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "maxTokens": 30000,
       "temperature": 0.2,
       "tools": {
@@ -501,7 +520,7 @@
     "plan": {
       "description": "Plan agent - planning dan analisis",
       "mode": "primary",
-      "model": "stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "maxTokens": 12000,
       "temperature": 0.3,
       "tools": {
@@ -517,7 +536,7 @@
     "council": {
       "description": "Council agent - multi-LLM consensus",
       "mode": "primary",
-      "model": "kilo/stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "maxTokens": 20000,
       "temperature": 0.5,
       "tools": {
@@ -529,7 +548,7 @@
     "task": {
       "description": "Task agent - background operations (search, analysis)",
       "mode": "primary",
-      "model": "stepfun/step-3.5-flash:free",
+      "model": "opencode/big-pickle",
       "maxTokens": 8000,
       "temperature": 0.2,
       "tools": {
