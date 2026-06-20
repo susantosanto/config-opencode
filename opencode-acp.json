@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "kilo/stepfun/step-3.5-flash:free",
+  "model": "opencode/big-pickle",
   "provider": {
     "kilo": {
       "name": "Kilo Gateway",
@@ -19,6 +19,23 @@
           "limit": {
             "context": 256000,
             "output": 64000
+          }
+        }
+      }
+    },
+    "opencode": {
+      "name": "OpenCode Zen",
+      "options": {
+        "baseURL": "https://api.opencode.cloud/v1",
+        "apiKey": "sk-KhoDPTVjLkNMRPHUURbXyX5MGtpH7GVShl09CwkFfxMwGYYWo9AtsHvYgQ4wa0KL"
+      },
+      "models": {
+        "big-pickle": {
+          "id": "big-pickle",
+          "name": "big-pickle",
+          "limit": {
+            "context": 128000,
+            "output": 65536
           }
         }
       }

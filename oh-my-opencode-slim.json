@@ -1,12 +1,115 @@
 {
   "$schema": "https://unpkg.com/oh-my-opencode-slim@latest/oh-my-opencode-slim.schema.json",
-  "preset": "minimax",
+  "preset": "default",
+  "setDefaultAgent": true,
+  "manualPlan": {
+    "orchestrator": {
+      "primary": "opencode/big-pickle",
+      "fallback1": "opencode/nemotron-3-ultra-free",
+      "fallback2": "zhipu/glm-4-flash",
+      "fallback3": "opencode/nemotron-3-super-free"
+    },
+    "oracle": {
+      "primary": "opencode/big-pickle",
+      "fallback1": "opencode/nemotron-3-ultra-free",
+      "fallback2": "zhipu/glm-4-flash",
+      "fallback3": "zhipu/glm-4"
+    },
+    "designer": {
+      "primary": "google/antigravity-gemini-3-flash",
+      "fallback1": "opencode/big-pickle",
+      "fallback2": "zhipu/glm-4-flash",
+      "fallback3": "opencode/nemotron-3-ultra-free"
+    },
+    "explorer": {
+      "primary": "zhipu/glm-4-flash",
+      "fallback1": "opencode/nemotron-3-super-free",
+      "fallback2": "opencode/big-pickle",
+      "fallback3": "freellmapi/auto"
+    },
+    "librarian": {
+      "primary": "google/antigravity-gemini-3-flash",
+      "fallback1": "opencode/big-pickle",
+      "fallback2": "zhipu/glm-4-flash",
+      "fallback3": "zhipu/glm-4-flash"
+    },
+    "fixer": {
+      "primary": "opencode/big-pickle",
+      "fallback1": "opencode/nemotron-3-ultra-free",
+      "fallback2": "zhipu/glm-4-flash",
+      "fallback3": "zhipu/glm-4"
+    }
+  },
+  "fallback": {
+    "enabled": true,
+    "timeoutMs": 15000,
+    "retryDelayMs": 500,
+    "retry_on_empty": true
+  },
   "presets": {
-    "minimax": {
-      "orchestrator": { "model": "opencode/minimax-m2.5-free", "variant": "high", "skills": ["*"], "mcps": ["*"] }
+    "default": {
+      "orchestrator": {
+        "model": "opencode/big-pickle",
+        "temperature": 0.2,
+        "variant": "high",
+        "mcps": ["*"],
+        "skills": ["*"]
+      },
+      "explorer": {
+        "model": ["zhipu/glm-4-flash", "opencode/nemotron-3-super-free"],
+        "temperature": 0.1,
+        "skills": ["*"]
+      },
+      "oracle": {
+        "model": "opencode/big-pickle",
+        "temperature": 0.1
+      },
+      "librarian": {
+        "model": ["google/antigravity-gemini-3-flash", "opencode/big-pickle"],
+        "temperature": 0.2,
+        "mcps": ["fetch", "context7", "websearch"]
+      },
+      "designer": {
+        "model": "google/antigravity-gemini-3-flash",
+        "temperature": 0.3,
+        "variant": "high"
+      },
+      "fixer": {
+        "model": "opencode/big-pickle",
+        "temperature": 0.1,
+        "mcps": ["*"],
+        "skills": ["*"]
+      }
+    },
+    "quick": {
+      "orchestrator": {
+        "model": "zhipu/glm-4-flash",
+        "temperature": 0.1
+      },
+      "explorer": {
+        "model": "zhipu/glm-4-flash"
+      },
+      "fixer": {
+        "model": "zhipu/glm-4-flash",
+        "temperature": 0.1
+      }
+    },
+    "research": {
+      "orchestrator": {
+        "model": "opencode/big-pickle"
+      },
+      "librarian": {
+        "model": "google/antigravity-gemini-3-flash"
+      },
+      "explorer": {
+        "model": "opencode/big-pickle"
+      }
     }
   },
   "tmux": {
     "enabled": false
+  },
+  "multiplexer": {
+    "type": "none"
   }
 }

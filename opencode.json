@@ -1,252 +1,353 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-sonnet-4-5",
-  "provider": {
-    "google": {
-      "models": {
-        "antigravity-gemini-3-pro": {
-          "name": "Gemini 3 Pro (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65535
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "variants": {
-            "low": {
-              "thinkingLevel": "low"
-            },
-            "high": {
-              "thinkingLevel": "high"
-            }
-          }
-        },
-        "antigravity-gemini-3.1-pro": {
-          "name": "Gemini 3.1 Pro (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65535
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "variants": {
-            "low": {
-              "thinkingLevel": "low"
-            },
-            "high": {
-              "thinkingLevel": "high"
-            }
-          }
-        },
-        "antigravity-gemini-3-flash": {
-          "name": "Gemini 3 Flash (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "variants": {
-            "minimal": {
-              "thinkingLevel": "minimal"
-            },
-            "low": {
-              "thinkingLevel": "low"
-            },
-            "medium": {
-              "thinkingLevel": "medium"
-            },
-            "high": {
-              "thinkingLevel": "high"
-            }
-          }
-        },
-        "antigravity-claude-sonnet-4-6": {
-          "name": "Claude Sonnet 4.6 (Antigravity)",
-          "limit": {
-            "context": 200000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "antigravity-claude-opus-4-6-thinking": {
-          "name": "Claude Opus 4.6 Thinking (Antigravity)",
-          "limit": {
-            "context": 200000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "variants": {
-            "low": {
-              "thinkingBudget": 4000
-            },
-            "max": {
-              "thinkingBudget": 32000
-            }
-          }
-        }
+  "agent": {
+    "build": {
+      "description": "[Pembangun] Build agent - implementasi kode",
+      "maxTokens": 30000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.2,
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "glob": true,
+        "grep": true,
+        "read": true,
+        "task": true,
+        "write": true
       }
     },
-    "zhipu": {
-      "apiKey": "${ZHIPU_API_KEY}",
-      "baseURL": "https://open.bigmodel.cn/api/paas/v4/",
-      "models": {
-        "glm-4-flash": {
-          "id": "glm-4-flash",
-          "name": "GLM-4 Flash (Zhipu)",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "glm-4": {
-          "id": "glm-4",
-          "name": "GLM-4 (Zhipu)",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        }
+    "council": {
+      "description": "[Musyawarah] Council agent - multi-LLM consensus",
+      "maxTokens": 20000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.5,
+      "tools": {
+        "read": true,
+        "task": true,
+        "write": true
       }
     },
-    "kilo": {
-      "name": "Kilo Gateway",
-      "models": {
-        "kilo/auto": {
-          "id": "kilo/auto",
-          "name": "Kilo Auto",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          }
-        },
-        "stepfun/step-3.5-flash:free": {
-          "id": "stepfun/step-3.5-flash:free",
-          "name": "Step 3.5 Flash (Free)",
-          "limit": {
-            "context": 256000,
-            "output": 64000
-          }
-        },
-        "poolside/laguna-xs.2:free": {
-          "id": "poolside/laguna-xs.2:free",
-          "name": "Laguna XS 2 (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 32000
-          }
-        },
-        "poolside/laguna-m.1:free": {
-          "id": "poolside/laguna-m.1:free",
-          "name": "Laguna M 1 (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
-        "nvidia/nemotron-3-super-120b-a12b:free": {
-          "id": "nvidia/nemotron-3-super-120b-a12b:free",
-          "name": "Nemotron 3 Super (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 32000
-          }
-        },
-        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
-          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-          "name": "Nemotron Nano Reasoning (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 32000
-          }
-        },
-        "tencent/hy3-preview:free": {
-          "id": "tencent/hy3-preview:free",
-          "name": "Hy3 Preview (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 32000
-          }
-        },
-        "baidu/qianfan-ocr-fast:free": {
-          "id": "baidu/qianfan-ocr-fast:free",
-          "name": "Qianfan OCR Fast (Free)",
-          "limit": {
-            "context": 64000,
-            "output": 32000
-          }
-        },
-        "inclusionai/ling-2.6-1t:free": {
-          "id": "inclusionai/ling-2.6-1t:free",
-          "name": "Ling 2.6 1T (Free)",
-          "limit": {
-            "context": 128000,
-            "output": 32000
-          }
+    "orchestrator": {
+      "description": "[Delegator] Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
+      "maxTokens": 25000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "permission": {
+        "task": {
+          "*": "deny"
         }
-      }
-    },
-    "opencode": {
-      "name": "OpenCode Zen",
-      "models": {}
-    },
-    "freellmapi": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "FreeLLMAPI",
-      "options": {
-        "baseURL": "http://localhost:3001/v1",
-        "apiKey": "freellmapi-05adc1675f2532df391b04ec5e12223d73a07e2e02690ac3"
       },
-      "models": {
-        "auto": {
-          "id": "auto",
-          "name": "FreeLLMAPI Auto Router",
-          "limit": {
-            "context": 128000,
-            "output": 65536
-          }
-        }
+      "temperature": 0.3,
+      "tools": {
+        "bash": false,
+        "edit": true,
+        "glob": false,
+        "grep": true,
+        "read": true,
+        "task": true,
+        "write": true
       }
+    },
+    "prometheus": {
+      "description": "[Perencana] 🔥 Prometheus - Strategic planning & work plan generation",
+      "maxTokens": 16000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.2,
+      "tools": {
+        "bash": false,
+        "edit": false,
+        "glob": false,
+        "grep": true,
+        "read": true,
+        "task": true,
+        "write": true
+      }
+    },
+    "task": {
+      "description": "[Pelaksana] Task agent - background operations (search, analysis)",
+      "maxTokens": 8000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.2,
+      "tools": {
+        "grep": true,
+        "read": true,
+        "task": false,
+        "webfetch": true,
+        "websearch": true
+      }
+    },
+    "momus": {
+      "description": "[Reviewer] 📝 Momus - Plan reviewer. Evaluates plans for clarity, verifiability, completeness",
+      "maxTokens": 16000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.1,
+      "tools": {
+        "read": true,
+        "grep": true,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "task": true
+      }
+    },
+    "metis": {
+      "description": "[Analis] 🧠 Metis - Pre-planning analysis. Identifies hidden intentions, ambiguities, AI failure points.",
+      "maxTokens": 16000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.3,
+      "tools": {
+        "read": true,
+        "grep": true,
+        "write": true,
+        "edit": false,
+        "bash": false,
+        "task": true
+      }
+    },
+    "multimodal": {
+      "description": "[Analis Media] 👁️ Multimodal-Looker - Analyzes media files (PDFs, images, diagrams)",
+      "maxTokens": 20000,
+      "mode": "primary",
+      "model": "google/antigravity-gemini-3-flash",
+      "temperature": 0.1,
+      "tools": {
+        "read": true,
+        "grep": false,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "task": false
+      }
+    },
+    "hephaestus": {
+      "description": "[Pekerja] 🔨 Hephaestus - Autonomous deep worker. Goal-oriented execution, thorough research before action.",
+      "maxTokens": 32000,
+      "mode": "primary",
+      "model": "opencode/big-pickle",
+      "temperature": 0.1,
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "task": true,
+        "webfetch": true,
+        "websearch": true
+      }
+    }
+  },
+  "autoupdate": false,
+  "lsp": true,
+  "mcp": {
+    "ast-grep": {
+      "command": [
+        "uv",
+        "run",
+        "--directory",
+        "C:/Users/USER/.config/opencode/ast-grep-mcp",
+        "python",
+        "main.py"
+      ],
+      "enabled": true,
+      "environment": {
+        "PATH": "C:/Users/USER/AppData/Local/Programs/Python/Python313/Scripts;C:/Users/USER/.config/opencode/ast-grep-mcp/bin;${PATH}"
+      },
+      "type": "local"
+    },
+    "browser-use": {
+      "command": [
+        "uvx",
+        "--from",
+        "browser-use[cli]",
+        "browser-use",
+        "--mcp"
+      ],
+      "enabled": true,
+      "environment": {
+        "BROWSER_HEADLESS": "false",
+        "GOOGLE_API_KEY": "${GOOGLE_API_KEY}",
+        "MCP_MAX_ACTIONS_PER_STEP": "5",
+        "MCP_MAX_STEPS": "30",
+        "MCP_MODEL_NAME": "gemini-2.0-flash",
+        "MCP_MODEL_PROVIDER": "gemini",
+        "MCP_USE_VISION": "true"
+      },
+      "timeout": 120000,
+      "type": "local"
+    },
+    "caveman-shrink": {
+      "command": [
+        "npx",
+        "-y",
+        "caveman-shrink"
+      ],
+      "enabled": true,
+      "timeout": 60000,
+      "type": "local"
+    },
+    "context7": {
+      "enabled": true,
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      },
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "everything": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-everything\\dist\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "excel-control": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@negokaz\\excel-mcp-server\\dist\\launcher.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "excel-mcp": {
+      "command": [
+        "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-m",
+        "excel_mcp",
+        "stdio"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "fetch": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\mcp-fetch-server\\dist\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "filesystem": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "C:/Users/USER"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "github-mcp-server": {
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "enabled": true,
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "timeout": 60000,
+      "type": "local"
+    },
+    "memory": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "pdf": {
+      "command": [
+        "uvx",
+        "mcp-pdf"
+      ],
+      "enabled": true,
+      "timeout": 60000,
+      "type": "local"
+    },
+    "playwright-mcp": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "sequential-thinking": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "shell": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\super-shell-mcp\\build\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "superpowers": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\superpowers-mcp\\out\\server.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "vision-mcp-server": {
+      "command": [
+        "python",
+        "-m",
+        "vision_mcp_server.server"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "winapp-mcp": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\winapp-mcp\\bin\\winapp-mcp.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "windows-desktop-automation": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "windows-mcp": {
+      "command": [
+        "uvx",
+        "windows-mcp",
+        "serve"
+      ],
+      "enabled": true,
+      "timeout": 60000,
+      "type": "local"
+    },
+    "word": {
+      "command": [
+        "node",
+        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@puchunjie\\doc-tools-mcp\\dist\\mcp-server.js"
+      ],
+      "enabled": true,
+      "type": "local"
     }
   },
   "mode": {
@@ -254,17 +355,7 @@
       "prompt": "{file:C:/Users/USER/.config/opencode/AGENTS.md}"
     }
   },
-  "plugin": [
-    "opencode-antigravity-auth@latest",
-    "opencode-kilo-auth@latest",
-    "octto",
-    "./plugins/caveman/plugin.js"
-  ],
-  "skills": {
-    "paths": [
-      "C:/Users/USER/.config/opencode/skills"
-    ]
-  },
+  "model": "opencode/big-pickle",
   "permission": {
     "skill": {
       "*": "allow",
@@ -274,291 +365,325 @@
       "using-superpowers": "allow"
     }
   },
-  "lsp": true,
-  "mcp": {
-    "filesystem": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "C:/Users/USER"
-      ],
-      "enabled": true
+  "plugin": [
+    "opencode-antigravity-auth@latest",
+    "opencode-kilo-auth@latest",
+    "octto",
+    "./plugins/caveman/plugin.js",
+    "oh-my-opencode-slim@latest",
+    "opencode-goal-plugin",
+    "opencode-swarm-plugin@latest"
+  ],
+  "command": {
+    "goal": {
+      "description": "Set a session-scoped goal and auto-continue until complete.",
+      "template": "$ARGUMENTS",
+      "agent": "build"
     },
-    "playwright-mcp": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"
-      ],
-      "enabled": true
-    },
-    "memory": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "sequential-thinking": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "fetch": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\mcp-fetch-server\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "env": {
-        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-      },
-      "enabled": true
-    },
-    "github-mcp-server": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      },
-      "enabled": true,
-      "timeout": 60000
-    },
-    "everything": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-everything\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "excel-control": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@negokaz\\excel-mcp-server\\dist\\launcher.js"
-      ],
-      "enabled": true
-    },
-    "excel-mcp": {
-      "type": "local",
-      "command": [
-        "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
-        "-m",
-        "excel_mcp",
-        "stdio"
-      ],
-      "enabled": true
-    },
-    "word": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\@puchunjie\\doc-tools-mcp\\dist\\mcp-server.js"
-      ],
-      "enabled": true
-    },
-    "windows-mcp": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "windows-mcp",
-        "serve"
-      ],
-      "enabled": true,
-      "timeout": 60000
-    },
-    "windows-desktop-automation": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\mcp-windows-desktop-automation\\dist\\index.js"
-      ],
-      "enabled": true
-    },
-    "winapp-mcp": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\winapp-mcp\\bin\\winapp-mcp.js"
-      ],
-      "enabled": true
-    },
-    "shell": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\super-shell-mcp\\build\\index.js"
-      ],
-      "enabled": true
-    },
-    "pdf": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "mcp-pdf"
-      ],
-      "enabled": true,
-      "timeout": 60000
-    },
-    "superpowers": {
-      "type": "local",
-      "command": [
-        "node",
-        "C:\\Users\\USER\\AppData\\Roaming\\npm\\node_modules\\superpowers-mcp\\out\\server.js"
-      ],
-      "enabled": true
-    },
-    "vision-mcp-server": {
-      "type": "local",
-      "command": [
-        "python",
-        "-m",
-        "vision_mcp_server.server"
-      ],
-      "enabled": true
-    },
-    "browser-use": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "browser-use[cli]",
-        "browser-use",
-        "--mcp"
-      ],
-      "environment": {
-        "GOOGLE_API_KEY": "${GOOGLE_API_KEY}",
-        "MCP_MODEL_PROVIDER": "gemini",
-        "MCP_MODEL_NAME": "gemini-2.0-flash",
-        "MCP_USE_VISION": "true",
-        "MCP_MAX_STEPS": "30",
-        "MCP_MAX_ACTIONS_PER_STEP": "5",
-        "BROWSER_HEADLESS": "false"
-      },
-      "enabled": true,
-      "timeout": 120000
-    },
-    "caveman-shrink": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "caveman-shrink"
-      ],
-      "enabled": true,
-      "timeout": 60000
-    },
-    "ast-grep": {
-      "type": "local",
-      "command": [
-        "uv",
-        "run",
-        "--directory",
-        "C:/Users/USER/.config/opencode/ast-grep-mcp",
-        "python",
-        "main.py"
-      ],
-      "environment": {
-        "PATH": "C:/Users/USER/AppData/Local/Programs/Python/Python313/Scripts;C:/Users/USER/.config/opencode/ast-grep-mcp/bin;${PATH}"
-      },
-      "enabled": true
+    "swarm": {
+      "description": "Multi-agent coordination - decompose and execute complex tasks.",
+      "template": "$ARGUMENTS",
+      "agent": "swarm-planner"
     }
   },
-  "agent": {
-    "orchestrator": {
-      "description": "Multi-agent orchestrator - analyze task dan delegasikan ke specialist",
-      "mode": "primary",
-      "model": "opencode/big-pickle",
-      "maxTokens": 25000,
-      "temperature": 0.3,
-      "tools": {
-        "task": true,
-        "write": true,
-        "edit": true,
-        "read": true,
-        "grep": true,
-        "glob": false,
-        "bash": false
+  "provider": {
+    "freellmapi": {
+      "models": {
+        "auto": {
+          "id": "auto",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          },
+          "name": "FreeLLMAPI Auto Router"
+        }
       },
-      "permission": {
-        "task": {
-          "*": "deny"
+      "name": "FreeLLMAPI",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "freellmapi-05adc1675f2532df391b04ec5e12223d73a07e2e02690ac3",
+        "baseURL": "http://localhost:3001/v1"
+      }
+    },
+    "google": {
+      "models": {
+        "antigravity-claude-opus-4-6-thinking": {
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "Claude Opus 4.6 Thinking (Antigravity)",
+          "variants": {
+            "low": {
+              "thinkingBudget": 4000
+            },
+            "max": {
+              "thinkingBudget": 32000
+            }
+          }
+        },
+        "antigravity-claude-sonnet-4-6": {
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "Claude Sonnet 4.6 (Antigravity)"
+        },
+        "antigravity-gemini-3-flash": {
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "Gemini 3 Flash (Antigravity)",
+          "variants": {
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "minimal": {
+              "thinkingLevel": "minimal"
+            }
+          }
+        },
+        "antigravity-gemini-3-pro": {
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "Gemini 3 Pro (Antigravity)",
+          "variants": {
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            }
+          }
+        },
+        "antigravity-gemini-3.1-pro": {
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "Gemini 3.1 Pro (Antigravity)",
+          "variants": {
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            }
+          }
         }
       }
     },
-    "build": {
-      "description": "Build agent - implementasi kode",
-      "mode": "primary",
-      "model": "opencode/big-pickle",
-      "maxTokens": 30000,
-      "temperature": 0.2,
-      "tools": {
-        "task": true,
-        "write": true,
-        "edit": true,
-        "read": true,
-        "grep": true,
-        "glob": true,
-        "bash": true
+    "kilo": {
+      "models": {
+        "baidu/qianfan-ocr-fast:free": {
+          "id": "baidu/qianfan-ocr-fast:free",
+          "limit": {
+            "context": 64000,
+            "output": 32000
+          },
+          "name": "Qianfan OCR Fast (Free)"
+        },
+        "inclusionai/ling-2.6-1t:free": {
+          "id": "inclusionai/ling-2.6-1t:free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Ling 2.6 1T (Free)"
+        },
+        "kilo/auto": {
+          "id": "kilo/auto",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "name": "Kilo Auto"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Nemotron Nano Reasoning (Free)"
+        },
+        "nvidia/nemotron-3-super-120b-a12b:free": {
+          "id": "nvidia/nemotron-3-super-120b-a12b:free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Nemotron 3 Super (Free)"
+        },
+        "poolside/laguna-m.1:free": {
+          "id": "poolside/laguna-m.1:free",
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          },
+          "name": "Laguna M 1 (Free)"
+        },
+        "poolside/laguna-xs.2:free": {
+          "id": "poolside/laguna-xs.2:free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Laguna XS 2 (Free)"
+        },
+        "stepfun/step-3.5-flash:free": {
+          "id": "stepfun/step-3.5-flash:free",
+          "limit": {
+            "context": 256000,
+            "output": 64000
+          },
+          "name": "Step 3.5 Flash (Free)"
+        },
+        "tencent/hy3-preview:free": {
+          "id": "tencent/hy3-preview:free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Hy3 Preview (Free)"
+        }
+      },
+      "name": "Kilo Gateway"
+    },
+    "opencode": {
+      "models": {
+        "big-pickle": {
+          "id": "big-pickle",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          },
+          "name": "big-pickle"
+        },
+        "nemotron-3-super-free": {
+          "id": "nemotron-3-super-free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Nemotron 3 Super Free"
+        },
+        "nemotron-3-ultra-free": {
+          "id": "nemotron-3-ultra-free",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "name": "Nemotron 3 Ultra Free"
+        }
+      },
+      "name": "OpenCode Zen",
+      "options": {
+        "apiKey": "sk-0MFUUqg6cSwvPbnxxXUGqrve5oKx3kfvBLCaNhFfuTmE5O6IsPNOTecBGD0mCflp",
+        "baseURL": "https://opencode.ai/zen/v1"
       }
     },
-    "plan": {
-      "description": "Plan agent - planning dan analisis",
-      "mode": "primary",
-      "model": "opencode/big-pickle",
-      "maxTokens": 12000,
-      "temperature": 0.3,
-      "tools": {
-        "task": true,
-        "write": true,
-        "edit": true,
-        "read": true,
-        "grep": false,
-        "glob": false,
-        "bash": false
+    "zenmux": {
+      "name": "ZenMux AI",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "sk-ai-v1-7b51366a6e8a89dcf8952bed914b4f069aad0d593e613377871172b6b54255f7",
+        "baseURL": "https://zenmux.ai/api/v1"
+      },
+      "models": {
+        "z-ai/glm-5.2-free": {
+          "id": "z-ai/glm-5.2-free",
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "name": "GLM 5.2 Free (ZenMux)"
+        }
       }
     },
-    "council": {
-      "description": "Council agent - multi-LLM consensus",
-      "mode": "primary",
-      "model": "opencode/big-pickle",
-      "maxTokens": 20000,
-      "temperature": 0.5,
-      "tools": {
-        "task": true,
-        "write": true,
-        "read": true
-      }
-    },
-    "task": {
-      "description": "Task agent - background operations (search, analysis)",
-      "mode": "primary",
-      "model": "opencode/big-pickle",
-      "maxTokens": 8000,
-      "temperature": 0.2,
-      "tools": {
-        "read": true,
-        "grep": true,
-        "websearch": true,
-        "webfetch": true,
-        "task": false
+    "zhipu": {
+      "apiKey": "${ZHIPU_API_KEY}",
+      "baseURL": "https://open.bigmodel.cn/api/paas/v4/",
+      "models": {
+        "glm-4": {
+          "id": "glm-4",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "name": "GLM-4 (Zhipu)"
+        },
+        "glm-4-flash": {
+          "id": "glm-4-flash",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "name": "GLM-4 Flash (Zhipu)"
+        }
       }
     }
   },
-  "autoupdate": false
+  "skills": {
+    "paths": [
+      "C:/Users/USER/.config/opencode/skills"
+    ]
+  }
 }
