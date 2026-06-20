@@ -19,7 +19,7 @@ from datetime import datetime
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 BASE_URL = "http://localhost:5774"
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 SEKOLAH = "SD NEGERI PASIRHALANG"
 

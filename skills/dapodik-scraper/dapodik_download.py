@@ -8,7 +8,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 BASE_URL = "http://localhost:5774"
 OUTPUT_FILE = r"C:\Users\USER\Documents\daftar_pd.xlsx"

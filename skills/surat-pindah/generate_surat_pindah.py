@@ -14,7 +14,7 @@ from datetime import datetime
 from docx import Document
 
 BASE_URL = "http://localhost:5774"
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 SEKOLAH = "SD NEGERI PASIRHALANG"
 DESA = "Mandalamukti"

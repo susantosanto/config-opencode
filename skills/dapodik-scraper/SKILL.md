@@ -31,7 +31,7 @@ Download data peserta didik dari aplikasi Dapodik Web Service secara otomatis da
 - Package `requests`, `pandas`, `openpyxl` harus terinstall
 
 ## Token & NPSN (SDN Pasirhalang)
-- **Token**: `AlAiyPRTaYFDKLE`
+- **Token**: `7PPDifAyMZEAayd`
 - **NPSN**: `20205293`
 - **URL**: `http://localhost:5774`
 
@@ -67,7 +67,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 BASE_URL = "http://localhost:5774"
 OUTPUT_FILE = r"C:\Users\USER\Documents\daftar_pd.xlsx"

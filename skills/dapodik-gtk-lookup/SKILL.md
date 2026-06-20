@@ -32,7 +32,7 @@ Cari data lengkap Guru dan Tenaga Kependidikan (GTK) berdasarkan nama dan/atau j
 - Package `requests` harus terinstall
 
 ## Token & NPSN (SDN Pasirhalang)
-- **Token**: `AlAiyPRTaYFDKLE`
+- **Token**: `7PPDifAyMZEAayd`
 - **NPSN**: `20205293`
 - **URL**: `http://localhost:5774`
 - **Sekolah**: SD NEGERI PASIRHALANG

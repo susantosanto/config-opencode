@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 BASE_URL = "http://localhost:5774"
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 SEKOLAH = "SD NEGERI PASIRHALANG"
 

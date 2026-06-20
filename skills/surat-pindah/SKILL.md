@@ -27,7 +27,7 @@ Buat surat pindah sekolah otomatis berdasarkan data siswa dari Dapodik.
 - Folder `Documents/SK_Pindah` akan dibuat otomatis
 
 ## Token & NPSN (SDN Pasirhalang)
-- **Token**: `AlAiyPRTaYFDKLE`
+- **Token**: `7PPDifAyMZEAayd`
 - **NPSN**: `20205293`
 - **URL**: `http://localhost:5774`
 - **Sekolah**: SD NEGERI PASIRHALANG

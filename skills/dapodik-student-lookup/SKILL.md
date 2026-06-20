@@ -31,7 +31,7 @@ Cari data lengkap peserta didik berdasarkan nama dan/atau kelas dari Dapodik Web
 - Package `requests` harus terinstall
 
 ## Token & NPSN (SDN Pasirhalang)
-- **Token**: `AlAiyPRTaYFDKLE`
+- **Token**: `7PPDifAyMZEAayd`
 - **NPSN**: `20205293`
 - **URL**: `http://localhost:5774`
 - **Sekolah**: SD NEGERI PASIRHALANG
@@ -64,7 +64,7 @@ import sys
 from datetime import datetime
 
 BASE_URL = "http://localhost:5774"
-TOKEN = "AlAiyPRTaYFDKLE"
+TOKEN = "7PPDifAyMZEAayd"
 NPSN = "20205293"
 SEKOLAH = "SD NEGERI PASIRHALANG"
 

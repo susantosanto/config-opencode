@@ -15,7 +15,7 @@ from docx import Document
 
 # Default config (bisa di-override via CLI)
 DEFAULT_BASE_URL = "http://localhost:5774"
-DEFAULT_TOKEN = "AlAiyPRTaYFDKLE"
+DEFAULT_TOKEN = "7PPDifAyMZEAayd"
 DEFAULT_NPSN = "20205293"
 
 
